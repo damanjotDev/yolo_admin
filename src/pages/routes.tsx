@@ -24,7 +24,7 @@ const RouteHanding = () => {
       else {
             return (
                   <div className='w-full min-h-screen bg-accent'>
-                        <Navbar />
+                        {/* <Navbar /> */}
                         <Routes>
                               {/* // Route for landing Home Page */}
                               <Route path={'/'} element={<LandingHomePage />} />
