@@ -13,8 +13,7 @@ import {
 } from "../../utils/react-hook-form";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useTypedSelector } from "../../stateStore";
-import { devroninsAdminLogin } from "../../services";
-import { BackgroundAnimation } from "../../components/background_animation/background_animation";
+import { adminLogin } from "../../services";
 
 const loginFormValidation = yup.object().shape({
     email: yup.string().email("Invalid email").required("Email is required"),
@@ -35,7 +34,7 @@ const LoginPage = () => {
 
     const dispatch = useAppDispatch();
     const { adminDetailsLoading, adminDetails, error} = useTypedSelector(
-        (state) => state.Devronins
+        (state) => state.Admin
     );
 
 
@@ -52,7 +51,8 @@ const LoginPage = () => {
     });
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        dispatch(devroninsAdminLogin({...data}))
+        dispatch(adminLogin({...data}))
+        console.log('working')
     };
 
     return (
@@ -94,7 +94,7 @@ const LoginPage = () => {
                         {/* Login Header section */}
                         <TypographyH2 
                         title="Admin Login"
-                        className="text-primary-foreground"/>
+                        className="text-primary"/>
 
                         <form
                         className="
@@ -148,9 +148,6 @@ const LoginPage = () => {
                         </form>
                     </div>
                 </div>
-
-                {/* Hero Background animation section */}
-                <BackgroundAnimation />
             </div>
     );
 };

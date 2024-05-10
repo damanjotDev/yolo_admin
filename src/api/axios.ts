@@ -1,6 +1,5 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import { ErrorResponse } from '../utils/error-response-model';
-import Cookies from 'js-cookie';
 
 interface ApiConfig {
   baseURL: string;
@@ -11,7 +10,7 @@ interface ApiConfig {
 
 
 const apiConfig: ApiConfig = {
-  baseURL: `https://fakestoreapi.com/products` || "",
+  baseURL: `http://localhost:3000` || "",
   timeout: Number(process.env.API_TIMEOUT) || 10000
 };
 
@@ -20,9 +19,9 @@ const axiosInstance: AxiosInstance = axios.create(apiConfig);
 axiosInstance.interceptors.request.use((req: any) => {
   try {
 
-    const accessToken = Cookies.get('accessToken') || localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
-      req.headers.Authorization = `Bearer ${accessToken}`;
+      req.headers.Authorization = `${accessToken}`;
     }
     return req;
   } catch (error) {
@@ -74,6 +73,10 @@ const api = {
 
 export default api;
 
+
+//----------------------------------------------------------------------admin
+export const adminAuth = (data: any) => axiosInstance.post('/v1/admin/login', data);
+export const getAdmin = (id: string) => axiosInstance.get(`/v1/user/${id}`)
 
 
 

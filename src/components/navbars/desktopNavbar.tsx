@@ -13,7 +13,7 @@ import { useTypedSelector } from "../../stateStore";
 const DesktopNavbar = () => {
   const navbarRoutes = useNavbarRoutes();
 
-  const { devroninsDetails, error, devroninsDetailsLoading} = useTypedSelector((state)=> state.Devronins);
+ 
 
   const textMotion = {
     rest: {
