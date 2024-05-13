@@ -1,7 +1,7 @@
-import { FaChevronDown, FaFacebookF, FaTwitter, FaInstagram, FaLongArrowAltRight, FaStar, FaCheckCircle, FaLink, FaLinkedinIn, FaAppStoreIos, FaGooglePlay } from "react-icons/fa";
+import { FaChevronDown, FaFacebookF, FaTwitter, FaInstagram, FaLongArrowAltRight, FaStar, FaCheckCircle, FaLink, FaLinkedinIn, FaAppStoreIos, FaGooglePlay, FaUpload, FaRegFileImage, FaRegFile } from "react-icons/fa";
 import { FaAngleDown, FaRegCircleUser, FaCheck, FaArrowRightLong, FaAngleRight, FaPlus } from "react-icons/fa6"
 import { IoClose, IoSettingsOutline, IoLogOutOutline, IoLocation, IoLocationOutline, IoPlanetOutline, IoSearch } from "react-icons/io5";
-import { IoLogoGoogleplus } from "react-icons/io";
+import { IoLogoGoogleplus, IoMdAdd } from "react-icons/io";
 import { GrFacebookOption } from "react-icons/gr";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlineAnalytics, MdOutlineMenu, MdDeveloperBoard, MdOutlineMarkEmailRead, MdMoneyOff } from "react-icons/md";
@@ -12,6 +12,8 @@ import { FiMenu, FiSend, FiPhone } from "react-icons/fi";
 import { BsTelephoneFill, BsBrowserChrome } from "react-icons/bs";
 import { TbAward } from "react-icons/tb";
 import { SiNamecheap } from "react-icons/si";
+import {  } from "react-icons/fa";
+import { BsX } from "react-icons/bs";
 
 
 
@@ -61,5 +63,10 @@ export{
     FaGooglePlay,
     BsBrowserChrome,
     IoSearch,
-    FaPlus
+    FaPlus,
+    IoMdAdd,
+    FaUpload, 
+    FaRegFileImage, 
+    FaRegFile,
+    BsX
 }

@@ -1,6 +1,8 @@
+
 import { cn } from "../../../lib/utils"
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
+import { Textarea } from "../../../components/ui/textarea";
 import {
   yupResolver,
   yup,
@@ -14,11 +16,13 @@ import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { Card } from "../../../components/ui/card";
 import { RoutesName } from "../../../utils/constant";
+import { FileInput } from "../../../components/ui/drag-drop";
+import { useState } from "react";
 
 const serviceFormSchema = yup.object().shape({
   title: yup.string().required(),
   description: yup.string().required(),
-  imageUrl: yup.string().required(),
+  imageData: yup.object().shape(),
   iconUrl: yup.string().required()
 })
 
@@ -32,7 +36,7 @@ const serviceFormDefaultValues = {
 // This can come from your database or API.
 
 
-export const  ServiceEditPage = () => {
+export const  ServiceAddPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -58,6 +62,17 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(addService({data, navigate}))
 };
  
+
+const [ownerLicense, setOwnerLicense] = useState<any>([]);
+
+  function uploadFiles(f: any) {
+    setOwnerLicense([...ownerLicense, ...f]);
+  }
+
+  function deleteFile(indexImg: any) {
+    const updatedList = ownerLicense.filter((ele: any, index: any) => index !== indexImg);
+    setOwnerLicense(updatedList);
+  }
 
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
@@ -92,29 +107,13 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
                 <div className="grid w-full items-center gap-1.5">
                     <label htmlFor="phone" className="text-sm">
-                        Description (required)
-                    </label>
-                    <Input
-                        disabled={serviceDetailsLoading}
-                        type="text"
-                        id="description"
-                        placeholder="Your description"
-                        {...register("description")}
-                        error={errors?.description?.message}
-                    />
-                </div>
-
-                <div className="grid w-full items-center gap-1.5">
-                    <label htmlFor="phone" className="text-sm">
                         Image (required)
                     </label>
-                    <Input
-                        disabled={serviceDetailsLoading}
-                        type="text"
-                        id="imageUrl"
-                        placeholder="Upload your image"
-                        {...register("imageUrl")}
-                        error={errors?.imageUrl?.message}
+                    <FileInput
+                      ownerLicense={ownerLicense}
+                      setOwnerLicense={(value: any)=> console.log('value', value)}
+                      count={1}
+                      formats={["jpg", "jpeg", "png"]}
                     />
                 </div>
 
@@ -122,13 +121,25 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                     <label htmlFor="phone" className="text-sm">
                         Icon (required)
                     </label>
-                    <Input
+                    <FileInput
+                        ownerLicense={ownerLicense}
+                        setOwnerLicense={(value: any)=> console.log('value', value)}
+                       count={5}
+                       formats={["jpg", "jpeg", "png"]}
+                    />
+                </div>
+
+                <div className="grid w-full items-center gap-1.5">
+                    <label htmlFor="phone" className="text-sm">
+                        Description (required)
+                    </label>
+                    <Textarea
                         disabled={serviceDetailsLoading}
-                        type="text"
-                        id="iconUrl"
-                        placeholder="Upload your icon image"
-                        {...register("iconUrl")}
-                        error={errors?.iconUrl?.message}
+                        id="description"
+                        placeholder="Your description"
+                        {...register("description")}
+                        error={errors?.description?.message}
+                        rows={7}
                     />
                 </div>
 

@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { toast } from "../components/ui/use-toast";
 import { createService, deleteService, fetchService, fetchServices, updateService } from "../api/axios";
+import { RoutesName } from "../utils/constant";
 
 export const addService = createAsyncThunk<any, any>('ServiceSlice/addService', async (params, thunkApi) => {
     try {
-        const {data} = await createService({...params})
+        const {data} = await createService({...params?.data})
+        params?.navigate(RoutesName.Services)
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;

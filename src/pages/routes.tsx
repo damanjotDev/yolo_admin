@@ -7,7 +7,9 @@ import LoginPage from './auth/login';
 import { useTypedSelector } from "../stateStore";
 import { Navbar } from '../components/navbar/navbar';
 import { ServicePage } from './main/services';
+import { ServiceAddPage } from './main/services/add-service';
 import { ServiceEditPage } from './main/services/edit-service';
+
 
 const RouteHanding = () => {
       const { isLogin } = useTypedSelector((state) => state.Admin);
@@ -33,6 +35,7 @@ const RouteHanding = () => {
 
                               {/* Service Section */}
                               <Route path={RoutesName.Services} element={<ServicePage/>} />
+                              <Route path={RoutesName.ServiceAdd} element={<ServiceAddPage/>} />
                               <Route path={RoutesName.ServiceEdit} element={<ServiceEditPage/>} />
 
                               {/* Not Found route */}

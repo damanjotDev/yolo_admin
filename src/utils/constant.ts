@@ -22,6 +22,7 @@ export const RoutesName = {
 
         Dashboard: '/',
         Services: '/services',
+        ServiceAdd: '/services/add',
         ServiceEdit: '/services/edit',
         Properties: '/properties',
         Rooms: '/rooms',

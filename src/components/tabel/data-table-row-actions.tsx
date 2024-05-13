@@ -37,7 +37,6 @@ export function DataTableRowActions<TData>({
       case 'services':
         ServiceActions.setServiceDetails(row?.original)
         navigate(RoutesName.ServiceEdit)
-        alert('working')
         break;
 
       default:
