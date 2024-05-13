@@ -1,7 +1,7 @@
-import { useMemo } from "react"
+
 import { RoutesName } from "../utils/constant"
 import { MdOutlineAnalytics, RxDashboard } from "../utils/icons"
-import {useLocation, Navigate, useNavigate} from "react-router-dom"
+import {useLocation, useNavigate} from "react-router-dom"
 
 
 const useNavbarRoutes = () =>{
@@ -11,72 +11,64 @@ const useNavbarRoutes = () =>{
     const routes = [
         {
             id: '1',
-            navigate: () => navigate(RoutesName.Home),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: RxDashboard,
-            active: RoutesName.Home===location.pathname,
-            label: 'Home'
+            active: RoutesName.Dashboard===location.pathname,
+            label: 'Dashboard'
             
         },
         {
             id: '2',
-            navigate: () => navigate(RoutesName.OurTeam),
+            navigate: () => navigate(RoutesName.Services),
             icon: MdOutlineAnalytics,
-            active: RoutesName.OurTeam===location.pathname,
-            label: 'Our team',
-            dropdownItems: [
-                {
-                    id: '1',
-                    navigate: () => navigate(RoutesName.OurTeam),
-                    label: 'Our Team',
-                },
-                {
-                    id: '2',
-                    navigate: () => navigate(RoutesName.OurTeamDetails),
-                    label: 'Team Details',
-                }
-            ]
+            active: RoutesName.Services===location.pathname,
+            label: 'Services'
         },
         {
             id: '3',
-            navigate: () => navigate(RoutesName.OurServices),
+            navigate: () => navigate(RoutesName.Properties),
             icon: RxDashboard,
-            active: RoutesName.Services===location.pathname,
-            label: 'Services',
-            dropdownItems: [
-                {
-                    id: '1',
-                    navigate: () => navigate(RoutesName.OurServices),
-                    label: 'Our Services',
-                },
-                {
-                    id: '2',
-                    navigate: () => navigate(RoutesName.OurServices+"/backup-recovery"),
-                    label: 'Service Details',
-                }
-            ]
+            active: RoutesName.Properties===location.pathname,
+            label: 'Properties'
         },
         {
             id: '4',
-            navigate: () => navigate(RoutesName.OurPortfolio),
+            navigate: () => navigate(RoutesName.Rooms),
             icon: MdOutlineAnalytics,
-            active: RoutesName.OurPortfolio===location.pathname,
-            label: 'Portfolio',
-            dropdownItems: [
-                {
-                    id: '1',
-                    navigate: () => navigate(RoutesName.OurServices),
-                    label: 'Our Portfolio',
-                },
-                {
-                    id: '2',
-                    navigate: () => navigate(RoutesName.OurTeam),
-                    label: 'Portfolio Details',
-                }
-            ]
+            active: RoutesName.Rooms===location.pathname,
+            label: 'Rooms'
+        },
+        {
+            id: '5',
+            navigate: () => navigate(RoutesName.Users),
+            icon: MdOutlineAnalytics,
+            active: RoutesName.Users===location.pathname,
+            label: 'Users'
+        },
+        {
+            id: '6',
+            navigate: () => navigate(RoutesName.Categories),
+            icon: MdOutlineAnalytics,
+            active: RoutesName.Categories===location.pathname,
+            label: 'Categories'
+        },
+        {
+            id: '7',
+            navigate: () => navigate(RoutesName.Event),
+            icon: MdOutlineAnalytics,
+            active: RoutesName.Event===location.pathname,
+            label: 'Event'
+        },
+        {
+            id: '8',
+            navigate: () => navigate(RoutesName.Reviews),
+            icon: MdOutlineAnalytics,
+            active: RoutesName.Reviews===location.pathname,
+            label: 'Reviews'
         }
     ]
 
-    return useMemo(()=>(routes),[location.pathname])
+    return routes
 
 }
 

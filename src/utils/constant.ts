@@ -14,11 +14,22 @@ export const RoutesName = {
         OurPortfolioDetails: '/our-portfolio/:id',
         NotFound: '/not-found',
         Pages: '/#',
-        Services: '/services',
         Analytics: '/analytics',
         Customer: '/customer',
         Orders: '/orders',
-        Profile: '/profile'
+        Profile: '/profile',
+
+
+        Dashboard: '/',
+        Services: '/services',
+        ServiceEdit: '/services/edit',
+        Properties: '/properties',
+        Rooms: '/rooms',
+        Users: 'users',
+        Categories: '/categories',
+        Event: '/events',
+        Reviews: 'reviews'
+
 }
 
 export const AvailableRoutes = Object.values(RoutesName);

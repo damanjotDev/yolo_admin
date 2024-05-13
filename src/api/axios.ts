@@ -80,6 +80,15 @@ export const getAdmin = (id: string) => axiosInstance.get(`/v1/user/${id}`)
 
 
 
+//----------------------------------------------------------------------service
+export const createService = (data: any) => axiosInstance.post('/v1/service/create', data);
+export const updateService = (id: string,data: any) => axiosInstance.put(`/v1/service/update/${id}`, data);
+export const fetchService = (id: string) => axiosInstance.get(`/v1/service/get/${id}`)
+export const fetchServices = (data: any) => axiosInstance.get('/v1/service/getall', {data});
+export const deleteService = (id: string) => axiosInstance.delete(`/v1/service/delete/${id}`)
+
+
+
 
 
 
