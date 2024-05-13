@@ -48,7 +48,6 @@ export function DataTableRowActions<TData>({
   const handleDelete = ()=>{
     switch (label){
       case 'services':
-        console.log('51', row)
         dispatch(removeService({...row?.original}))
         break;
       

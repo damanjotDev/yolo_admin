@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "../../../../components/ui/checkbox"
 
+// import { priorities, statuses } from "./data"
 import { DataTableColumnHeader } from "../../../../components/tabel/data-table-column-header"
 import { DataTableRowActions } from "../../../../components/tabel/data-table-row-actions"
 import { ServiceModal } from "../../../../utils/modals";
@@ -41,20 +42,16 @@ export const columns: ColumnDef<ServiceModal>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <div className="max-w-[500px]">
-            <img 
-            className="max-w-10 max-h-10 truncate font-medium"
-            src={row.getValue("imageUrl")}
-            alt="0"/>
-          </div>
+          <img 
+          className="max-w-5 max-h-5 truncate font-medium"
+          src={row.getValue("imageUrl")}
+          alt="0"/>
       </div>
       )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: "iconUrl",
@@ -64,20 +61,17 @@ export const columns: ColumnDef<ServiceModal>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-         <div className="max-w-[500px]">
-            <img 
-            className="max-w-10 max-h-10 truncate font-medium"
-            src={row.getValue("iconUrl")}
-            alt="0"/>
-          </div>
+         
+         <img 
+        className="max-w-5 max-h-5 truncate font-medium"
+        src={row.getValue("iconUrl")}
+        alt="0"/>
       </div>
       )
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
     },
-    enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: "description",

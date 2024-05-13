@@ -65,12 +65,12 @@ export const getService = createAsyncThunk<any, any>('ServiceSlice/getService', 
 export const removeService = createAsyncThunk<any, any>('ServiceSlice/removeService', async (params, thunkApi) => {
     try {
         console.log('params', params)
-        const {data} = await deleteService(params?.id)
+        await deleteService(params?.id)
         toast({
             title: "Success",
             description: "Service remove successfully"
             })
-        return thunkApi.dispatch(getServices())
+        thunkApi.dispatch(getServices())
     } catch (err) {
         const error: any = err;
         toast({
