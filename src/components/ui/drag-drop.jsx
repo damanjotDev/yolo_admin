@@ -2,16 +2,19 @@ import { useRef, useEffect, useState } from "react";
 import { FaUpload, FaRegFileImage, FaRegFile } from "react-icons/fa";
 import { BsX } from "../../utils/icons"
 import { toast} from "./use-toast";
+import { cn } from "../../lib/utils";
 
 export const FileInput = ({
   count,
   formats,
-  ownerLicense,
-  setOwnerLicense
+  value,
+  callBack
 }) => {
   const dropContainer = useRef(null);
   const [dragging, setDragging] = useState(false);
   const fileRef = useRef(null);
+
+  const [ownerLicense, setOwnerLicense] = useState(value?[...value]: []);
 
   const uploadFiles = async(files)=> {
     try {
@@ -19,7 +22,7 @@ export const FileInput = ({
         const base64String = await convertFileBase64(file);
         return {
           name: file.name,
-          photo: base64String,
+          imageUrl: base64String,
           type: file.type,
           size: file.size
         };
@@ -27,6 +30,7 @@ export const FileInput = ({
 
       const newFiles =  await Promise.all(nFiles)
       setOwnerLicense([...ownerLicense, ...newFiles]);
+      callBack([...ownerLicense, ...newFiles])
     } catch (error) {
       toast({
         variant: "destructive",
@@ -145,20 +149,22 @@ export const FileInput = ({
     <>
       {/* Container Drop */}
       <div
-        className={`${
-          dragging
-            ? "border border-primary bg-[#EDF2FF]"
-            : "border-dashed"
-        } w-full flex items-center justify-center mx-auto text-center border-2 rounded-md py-5`}
+        className={
+        cn("w-full flex items-center justify-center rounded-md border border-dashed",
+          dragging && "border border-primary bg-accent")
+      }
         ref={dropContainer}
       >
-        <div className="flex-1 flex flex-col">
-          <div className="mx-auto text-gray-400 mb-2">
+        <div className="w-full flex flex-col p-5 "
+        onClick={() => {
+          fileRef.current.click();
+        }}>
+          <div className="w-full mb-2 flex items-center justify-center">
             <FaUpload size={18} />
           </div>
-          <div className="text-[12px] font-normal text-gray-500">
+          <div className="w-full flex items-center justify-center font-normal">
             <input
-              className="opacity-0 hidden"
+              className="hidden"
               type="file"
               multiple
               accept="image/*"
@@ -166,16 +172,12 @@ export const FileInput = ({
               onChange={(e) => handleDrop(e, "inputFile")}
             />
             <span
-              className="text-[#4070f4] cursor-pointer"
-              onClick={() => {
-                fileRef.current.click();
-              }}
+              className="text-primary cursor-pointer"
             >
-              Click to upload
-            </span>{" "}
-            or drag and drop
+              Click to upload <span>{"or drag and drop"}</span>
+            </span>
           </div>
-          <div className="text-[10px] font-normal text-gray-500">
+          <div className="w-full flex items-center justify-center font-normal">
             Only two files PNG, JPG or JPEG
           </div>
         </div>
@@ -184,9 +186,9 @@ export const FileInput = ({
       {ownerLicense.length > 0 && (
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-4 ">
           {ownerLicense.map((img, index) => (
-            <div className="w-full px-3 py-3.5 rounded-md bg-slate-200 space-y-3">
+            <div className="w-full p-3 rounded-md bg-accent space-y-3">
               <div className="flex justify-between">
-                <div className="w-[70%] flex justify-start items-center space-x-2">
+                <div className="w-[70%] flex justify-start items-center space-x-4">
                   <div
                     className="text-primary text-[37px] cursor-pointer"
                     onClick={() => showImage(img.photo)}
@@ -197,7 +199,7 @@ export const FileInput = ({
                       <FaRegFile />
                     )}
                   </div>
-                  <div className=" w-full space-y-1">
+                  <div className="w-full space-y-0">
                     <span className="w-full text-xs font-medium truncate break-all">
                       {img.name}
                     </span>
@@ -207,7 +209,7 @@ export const FileInput = ({
                   </div>
                 </div>
                 <div className="flex-1 flex justify-end">
-                  <div className="space-y-1">
+                  <div className="space-y-0">
                     <div
                       className="text-[17px] cursor-pointer"
                       onClick={() => onDelete(index)}

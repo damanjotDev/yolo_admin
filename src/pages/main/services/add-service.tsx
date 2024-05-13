@@ -22,7 +22,7 @@ import { useState } from "react";
 const serviceFormSchema = yup.object().shape({
   title: yup.string().required(),
   description: yup.string().required(),
-  imageData: yup.object().shape(),
+  imageUrl: yup.string().required(),
   iconUrl: yup.string().required()
 })
 
@@ -37,6 +37,9 @@ const serviceFormDefaultValues = {
 
 
 export const  ServiceAddPage = () => {
+
+  const [ownerLicense, setOwnerLicense] = useState<any>([]);
+
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -61,9 +64,6 @@ const { serviceDetailsLoading} = useTypedSelector(
 const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(addService({data, navigate}))
 };
- 
-
-const [ownerLicense, setOwnerLicense] = useState<any>([]);
 
   function uploadFiles(f: any) {
     setOwnerLicense([...ownerLicense, ...f]);
@@ -110,8 +110,8 @@ const [ownerLicense, setOwnerLicense] = useState<any>([]);
                         Image (required)
                     </label>
                     <FileInput
-                      ownerLicense={ownerLicense}
-                      setOwnerLicense={(value: any)=> console.log('value', value)}
+                      value = {null}
+                      callBack = {(value: any)=> console.log('value', value)}
                       count={1}
                       formats={["jpg", "jpeg", "png"]}
                     />
@@ -122,8 +122,8 @@ const [ownerLicense, setOwnerLicense] = useState<any>([]);
                         Icon (required)
                     </label>
                     <FileInput
-                        ownerLicense={ownerLicense}
-                        setOwnerLicense={(value: any)=> console.log('value', value)}
+                        value = {null}
+                        callBack = {(value: any)=> console.log('value', value)}
                        count={5}
                        formats={["jpg", "jpeg", "png"]}
                     />
@@ -133,6 +133,7 @@ const [ownerLicense, setOwnerLicense] = useState<any>([]);
                     <label htmlFor="phone" className="text-sm">
                         Description (required)
                     </label>
+                    
                     <Textarea
                         disabled={serviceDetailsLoading}
                         id="description"
