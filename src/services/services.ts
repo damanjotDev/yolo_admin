@@ -21,7 +21,8 @@ export const addService = createAsyncThunk<any, any>('ServiceSlice/addService', 
 
 export const editService = createAsyncThunk<any, any>('ServiceSlice/editService', async (params, thunkApi) => {
     try {
-        const {data} = await updateService(params?.id, params?.data)
+        const {data} = await updateService(params?.data?.id, params?.data)
+        params?.navigate(RoutesName.Services)
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;

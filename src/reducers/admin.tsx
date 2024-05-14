@@ -29,7 +29,7 @@ export interface AdminReviewModal {
 }
 
 const initialState: AdminInitialStateType = {
-  isLogin: true,
+  isLogin: false,
   adminDetails: null,
   adminDetailsLoading: false,
   error: false

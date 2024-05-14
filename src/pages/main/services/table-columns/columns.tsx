@@ -14,9 +14,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Id" />
     ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    cell: ({ row }) => <div className="w-auto ml-2">{row.getValue("id")}</div>
   },
   {
     accessorKey: "title",
@@ -25,9 +23,9 @@ export const columns: ColumnDef<ServiceModal>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
+        <div className="flex ml-2">
          
-          <span className="max-w-[500px] truncate font-medium">
+          <span className="max-w-[150px] truncate font-medium">
             {row.original?.title}
           </span>
         </div>
@@ -41,7 +39,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
+        <div className="flex ml-2">
           <img 
           className="max-w-5 max-h-5 truncate font-medium"
           src={row.original?.images[0]?.imageUrl}
@@ -49,9 +47,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
       </div>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    enableSorting: false,
   },
   {
     accessorKey: "icons",
@@ -61,7 +57,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
     cell: ({ row }) => {
       
       return (
-        <div className="flex space-x-2">
+        <div className="flex ml-2">
          
          <img 
         className="max-w-5 max-h-5 truncate font-medium"
@@ -70,9 +66,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
       </div>
       )
     },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    enableSorting: false,
   },
   {
     accessorKey: "description",
@@ -81,14 +75,31 @@ export const columns: ColumnDef<ServiceModal>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="flex space-x-2">
-         
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("description")}
-          </span>
+        <div className="flex ml-2">
+          <div 
+          className="max-w-[150px] max-h-[30px] truncate font-medium" 
+          dangerouslySetInnerHTML={{__html: row?.original?.description || ""}}/>
+           
         </div>
       )
     },
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Date" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="flex ml-2">
+          <div 
+           className="max-w-[150px] max-h-[30px] truncate font-medium" >
+            {`${row?.original?.createdAt}`?.substring(0, 10)}
+          </div>
+        </div>
+      )
+    },
+    enableSorting: false,
   },
   {
     id: "actions",

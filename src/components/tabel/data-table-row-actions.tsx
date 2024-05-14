@@ -35,7 +35,7 @@ export function DataTableRowActions<TData>({
   const handleEdit = ()=>{
     switch (label) {
       case 'services':
-        ServiceActions.setServiceDetails(row?.original)
+        dispatch(ServiceActions.setServiceDetails(row?.original))
         navigate(RoutesName.ServiceEdit)
         break;
 

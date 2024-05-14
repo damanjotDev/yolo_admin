@@ -19,6 +19,7 @@ import { RoutesName } from "../../../utils/constant";
 import { FileInput } from "../../../components/ui/drag-drop";
 import { useState } from "react";
 import { error } from "console";
+import { RichTextEditor } from "../../../components/ui/rich-text-editor";
 
 const serviceFormSchema = yup.object().shape({
   title: yup.string().required(),
@@ -50,9 +51,6 @@ const serviceFormDefaultValues = {
 
 
 export const  ServiceAddPage = () => {
-
-  const [ownerLicense, setOwnerLicense] = useState<any>([]);
-
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -138,18 +136,20 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                     <label htmlFor="phone" className="text-sm">
                         Description (required)
                     </label>
-                    
-                    <Textarea
+                    <RichTextEditor 
+                        value={watch('description')}
+                        setValue={(value: string)=> setValue('description', value)}/>
+                    {/* <Textarea
                         disabled={serviceDetailsLoading}
                         id="description"
                         placeholder="Your description"
                         {...register("description")}
                         error={errors?.description?.message}
                         rows={7}
-                    />
+                    /> */}
                 </div>
 
-                <div className="flex items-center justify-end gap-5">
+                <div className="flex items-center justify-end gap-5 mt-12">
                     <Button
                     type="submit"
                     className="

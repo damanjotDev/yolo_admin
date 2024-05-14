@@ -33,6 +33,7 @@ const ServicesSlice = createSlice({
   initialState, //the initial state of the slice
   reducers: {
     setServiceDetails: (state, action) => {
+      console.log('36', action);
       state.serviceDetails = action.payload
     },
   }, // action methods

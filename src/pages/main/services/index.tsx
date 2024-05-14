@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { columns } from "../services/data/columns";
+import { columns } from "./table-columns/columns";
 import { DataTable } from "../../../components/tabel/data-table";
 
 import { useAppDispatch, useTypedSelector } from "../../../stateStore";
