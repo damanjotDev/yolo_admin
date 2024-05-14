@@ -24,7 +24,11 @@ export const RoutesName = {
         Services: '/services',
         ServiceAdd: '/services/add',
         ServiceEdit: '/services/edit',
+
         Properties: '/properties',
+        PropertyAdd: '/properties/add',
+        PropertyEdit: '/properties/edit',
+
         Rooms: '/rooms',
         Users: 'users',
         Categories: '/categories',

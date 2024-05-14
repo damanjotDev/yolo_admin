@@ -88,6 +88,13 @@ export const fetchServices = (data: any) => axiosInstance.get('/v1/service/getal
 export const deleteService = (id: string) => axiosInstance.delete(`/v1/service/delete/${id}`)
 
 
+//----------------------------------------------------------------------service
+export const createProperty = (data: any) => axiosInstance.post('/v1/property/create', data);
+export const updateProperty = (id: string,data: any) => axiosInstance.put(`/v1/property/update/${id}`, data);
+export const fetchProperty = (id: string) => axiosInstance.get(`/v1/property/get/${id}`)
+export const fetchProperties = (data: any) => axiosInstance.get('/v1/property/getall', {data});
+export const deleteProperty = (id: string) => axiosInstance.delete(`/v1/property/delete/${id}`)
+
 
 
 

@@ -11,8 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { ServiceActions } from "../../reducers"
-import { removeService } from "../../services"
+import { ServiceActions, PropertyActions } from "../../reducers"
+import { removeProperty, removeService } from "../../services"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { useAppDispatch } from "../../stateStore"
@@ -39,6 +39,11 @@ export function DataTableRowActions<TData>({
         navigate(RoutesName.ServiceEdit)
         break;
 
+      case 'properties':
+        dispatch(PropertyActions.setPropertyDetails(row?.original))
+        navigate(RoutesName.PropertyEdit)
+        break;
+
       default:
         return
     }
@@ -48,6 +53,10 @@ export function DataTableRowActions<TData>({
     switch (label){
       case 'services':
         dispatch(removeService({...row?.original}))
+        break;
+
+      case 'properties':
+        dispatch(removeProperty({...row?.original}))
         break;
       
       default:
@@ -67,6 +76,16 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
      {label==="services"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+    {label==="properties"?
       <DropdownMenuContent  align="end" className="w-[160px]">
       <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
       {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}

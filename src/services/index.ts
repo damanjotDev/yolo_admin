@@ -1,5 +1,6 @@
 
 export * from "./admin";
-export * from "./services"
+export * from "./service"
+export * from "./property"
 
 

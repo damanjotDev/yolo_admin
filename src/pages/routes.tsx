@@ -6,9 +6,12 @@ import NotFoundPage from '../components/common/not_found';
 import LoginPage from './auth/login';
 import { useTypedSelector } from "../stateStore";
 import { Navbar } from '../components/navbar/navbar';
-import { ServicePage } from './main/services';
-import { ServiceAddPage } from './main/services/add-service';
-import { ServiceEditPage } from './main/services/edit-service';
+import { ServicePage } from './main/service';
+import { ServiceAddPage } from './main/service/add-service';
+import { ServiceEditPage } from './main/service/edit-service';
+import { PropertyPage } from './main/property';
+import { PropertyAddPage } from './main/property/add-property';
+import { PropertyEditPage } from './main/property/edit-property';
 
 
 const RouteHanding = () => {
@@ -37,6 +40,11 @@ const RouteHanding = () => {
                               <Route path={RoutesName.Services} element={<ServicePage/>} />
                               <Route path={RoutesName.ServiceAdd} element={<ServiceAddPage/>} />
                               <Route path={RoutesName.ServiceEdit} element={<ServiceEditPage/>} />
+
+                               {/* Property Section */}
+                               <Route path={RoutesName.Properties} element={<PropertyPage/>} />
+                              <Route path={RoutesName.PropertyAdd} element={<PropertyAddPage/>} />
+                              <Route path={RoutesName.PropertyEdit} element={<PropertyEditPage/>} />
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />
