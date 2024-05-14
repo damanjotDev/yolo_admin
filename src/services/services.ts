@@ -7,9 +7,15 @@ export const addService = createAsyncThunk<any, any>('ServiceSlice/addService', 
     try {
         const {data} = await createService({...params?.data})
         params?.navigate(RoutesName.Services)
+
+        toast({
+            title: "Success ",
+            description: 'Service added successfully',
+          })
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
+        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -23,6 +29,12 @@ export const editService = createAsyncThunk<any, any>('ServiceSlice/editService'
     try {
         const {data} = await updateService(params?.data?.id, params?.data)
         params?.navigate(RoutesName.Services)
+
+        toast({
+            title: "Success ",
+            description: 'Service edit successfully',
+          })
+
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;

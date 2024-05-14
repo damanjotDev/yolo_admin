@@ -11,7 +11,8 @@ export const FileInput = ({
   count,
   formats,
   value,
-  callBack
+  callBack,
+  error
 }) => {
   const dropContainer = useRef(null);
   const fileRef = useRef(null);
@@ -264,6 +265,8 @@ export const FileInput = ({
           ))}
         </div>
       ): null}
+
+      {error &&<span className="text-red-500">{error}</span>}
     </>
   );
 }

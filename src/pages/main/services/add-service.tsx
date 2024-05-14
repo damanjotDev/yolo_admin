@@ -117,6 +117,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                       callBack = {(value: any)=> setValue('images', value)}
                       count={1}
                       formats={["jpg", "jpeg", "png"]}
+                      error={errors?.images?.message}
                     />
                 </div>
 
@@ -129,6 +130,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                       callBack = {(value: any)=> setValue('icons', value)}
                       count={1}
                       formats={["jpg", "jpeg", "png"]}
+                      error={errors?.icons?.message}
                     />
                 </div>
 
@@ -138,15 +140,9 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                     </label>
                     <RichTextEditor 
                         value={watch('description')}
-                        setValue={(value: string)=> setValue('description', value)}/>
-                    {/* <Textarea
-                        disabled={serviceDetailsLoading}
-                        id="description"
-                        placeholder="Your description"
-                        {...register("description")}
+                        setValue={(value: string)=> setValue('description', value)}
                         error={errors?.description?.message}
-                        rows={7}
-                    /> */}
+                    />
                 </div>
 
                 <div className="flex items-center justify-end gap-5 mt-12">
