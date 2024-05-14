@@ -28,14 +28,14 @@ export const columns: ColumnDef<ServiceModal>[] = [
         <div className="flex space-x-2">
          
           <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("title")}
+            {row.original?.title}
           </span>
         </div>
       )
     },
   },
   {
-    accessorKey: "imageUrl",
+    accessorKey: "images",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Image" />
     ),
@@ -44,7 +44,7 @@ export const columns: ColumnDef<ServiceModal>[] = [
         <div className="flex space-x-2">
           <img 
           className="max-w-5 max-h-5 truncate font-medium"
-          src={row.getValue("imageUrl")}
+          src={row.original?.images[0]?.imageUrl}
           alt="0"/>
       </div>
       )
@@ -54,17 +54,18 @@ export const columns: ColumnDef<ServiceModal>[] = [
     },
   },
   {
-    accessorKey: "iconUrl",
+    accessorKey: "icons",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Icon" />
     ),
     cell: ({ row }) => {
+      
       return (
         <div className="flex space-x-2">
          
          <img 
         className="max-w-5 max-h-5 truncate font-medium"
-        src={row.getValue("iconUrl")}
+        src={row.original?.icons[0]?.imageUrl}
         alt="0"/>
       </div>
       )

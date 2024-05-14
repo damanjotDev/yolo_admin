@@ -92,6 +92,29 @@ export const deleteService = (id: string) => axiosInstance.delete(`/v1/service/d
 
 
 
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------upload image
+export const fileUpload = (data: any) => axiosInstance.post('/v1/fileUpload', data, {
+  onUploadProgress: (progressEvent) => {
+    if(progressEvent&&progressEvent.total){
+       const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+       console.log('progress', progress)
+    }
+   }
+});
+
+
+
+
+
+
 // export const generatePassCode = (data) => axios.post(`${process.env.REACT_APP_API_BASE_URL}`, data)
 // export const forgotPassword = (data) => axios.post(`${process.env.REACT_APP_API_BASE_URL}`, data)
 //export const arboristResetPassword = (data) => API.post("arborist/resetpassword", data)

@@ -18,19 +18,32 @@ import { Card } from "../../../components/ui/card";
 import { RoutesName } from "../../../utils/constant";
 import { FileInput } from "../../../components/ui/drag-drop";
 import { useState } from "react";
+import { error } from "console";
 
 const serviceFormSchema = yup.object().shape({
   title: yup.string().required(),
   description: yup.string().required(),
-  imageUrl: yup.string().required(),
-  iconUrl: yup.string().required()
+  images:  yup.array().of(
+    yup.object().shape({
+      name: yup.string().required(),
+      imageUrl: yup.string().required(),
+      type: yup.string().required(),
+      size: yup.number().positive().required()
+    })).min(1),
+  icons: yup.array().of(
+    yup.object().shape({
+      name: yup.string().required(),
+      imageUrl: yup.string().required(),
+      type: yup.string().required(),
+      size: yup.number().positive().required()
+    })).min(1)
 })
 
 const serviceFormDefaultValues = {
   title: "",
   description: "",
-  imageUrl: "",
-  iconUrl: "",
+  images: [],
+  icons: []
 }
 
 // This can come from your database or API.
@@ -65,14 +78,6 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(addService({data, navigate}))
 };
 
-  function uploadFiles(f: any) {
-    setOwnerLicense([...ownerLicense, ...f]);
-  }
-
-  function deleteFile(indexImg: any) {
-    const updatedList = ownerLicense.filter((ele: any, index: any) => index !== indexImg);
-    setOwnerLicense(updatedList);
-  }
 
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
@@ -110,8 +115,8 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                         Image (required)
                     </label>
                     <FileInput
-                      value = {null}
-                      callBack = {(value: any)=> console.log('value', value)}
+                      value = {watch('images')}
+                      callBack = {(value: any)=> setValue('images', value)}
                       count={1}
                       formats={["jpg", "jpeg", "png"]}
                     />
@@ -122,10 +127,10 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                         Icon (required)
                     </label>
                     <FileInput
-                        value = {null}
-                        callBack = {(value: any)=> console.log('value', value)}
-                       count={5}
-                       formats={["jpg", "jpeg", "png"]}
+                      value = {watch('icons')}
+                      callBack = {(value: any)=> setValue('icons', value)}
+                      count={1}
+                      formats={["jpg", "jpeg", "png"]}
                     />
                 </div>
 

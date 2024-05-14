@@ -3,6 +3,9 @@ import { FaUpload, FaRegFileImage, FaRegFile } from "react-icons/fa";
 import { BsX } from "../../utils/icons"
 import { toast} from "./use-toast";
 import { cn } from "../../lib/utils";
+import { filesUpload } from "../../services/common";
+import { CustomDialog } from "../common/custom-dialog";
+
 
 export const FileInput = ({
   count,
@@ -11,27 +14,49 @@ export const FileInput = ({
   callBack
 }) => {
   const dropContainer = useRef(null);
-  const [dragging, setDragging] = useState(false);
   const fileRef = useRef(null);
+  
+  const [dragging, setDragging] = useState(false);
+  const [ownerLicense, setOwnerLicense] = useState(value);
 
-  const [ownerLicense, setOwnerLicense] = useState(value?[...value]: []);
+
+  const [isUpload, setIsUpload] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
   const uploadFiles = async(files)=> {
     try {
-      const nFiles = files.map(async (file) => {
+      setIsUpload(true);
+
+      let newFiles = [];
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
         const base64String = await convertFileBase64(file);
-        return {
+        const fileInfo = {
           name: file.name,
           imageUrl: base64String,
           type: file.type,
           size: file.size
         };
-      });
+  
+        // Upload the file
+        const result = await filesUpload(file);
+        console.log('result', result)
+        console.log('File uploaded:', result);
+  
+        // Assuming each result has a 'fileUrl' property
+        const uploadedFile = { ...fileInfo, imageUrl: result?.fileUrl };
+        newFiles.push(uploadedFile);
+      }
 
-      const newFiles =  await Promise.all(nFiles)
-      setOwnerLicense([...ownerLicense, ...newFiles]);
-      callBack([...ownerLicense, ...newFiles])
+      // Update state with new files
+      setOwnerLicense((prevOwnerLicense) => [...prevOwnerLicense, ...newFiles]);
+      callBack(newFiles);
+
+      setIsUpload(false)
+      
     } catch (error) {
+      console.log('error', error)
+      setIsUpload(false)
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
@@ -43,6 +68,7 @@ export const FileInput = ({
   const onDelete = (indexImg) =>  {
     const updatedList = ownerLicense.filter((ele, index) => index !== indexImg);
     setOwnerLicense(updatedList);
+    callBack(updatedList);
   }
 
   function handleDrop(e, type) {
@@ -116,9 +142,7 @@ export const FileInput = ({
     });
   }
 
-  function showImage(image) {
-    alert('ok');
-  }
+  
 
   useEffect(() => {
     function handleDragOver(e) {
@@ -180,18 +204,22 @@ export const FileInput = ({
           <div className="w-full flex items-center justify-center font-normal">
             Only two files PNG, JPG or JPEG
           </div>
+          {isUpload?
+          <div className="w-full flex items-center justify-center font-normal">
+            Uploading....
+          </div>:null}
         </div>
       </div>
 
-      {ownerLicense.length > 0 && (
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-4 ">
+      {ownerLicense.length > 0 && !isUpload? (
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
           {ownerLicense.map((img, index) => (
             <div className="w-full p-3 rounded-md bg-accent space-y-3">
               <div className="flex justify-between">
                 <div className="w-[70%] flex justify-start items-center space-x-4">
                   <div
                     className="text-primary text-[37px] cursor-pointer"
-                    onClick={() => showImage(img.photo)}
+                    onClick={() => setShowImage(true)}
                   >
                     {img.type.match(/image.*/i) ? (
                       <FaRegFileImage />
@@ -222,10 +250,20 @@ export const FileInput = ({
                   </div>
                 </div>
               </div>
+
+              <CustomDialog 
+              open={showImage} 
+              setOpen={setShowImage} 
+              title={img?.name} 
+              description={`${Math.floor(img.size / 1024)} KB`}>
+                    <div className="w-full h-full">
+                      <img src={img.imageUrl} className="w-full h-full"/>
+                    </div>
+              </CustomDialog>
             </div>
           ))}
         </div>
-      )}
+      ): null}
     </>
   );
 }
