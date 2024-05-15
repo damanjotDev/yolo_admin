@@ -18,27 +18,11 @@ import { Card } from "../../../components/ui/card";
 import { RoutesName } from "../../../utils/constant";
 import { FileInput } from "../../../components/ui/drag-drop";
 import { useState } from "react";
-import { error } from "console";
 import { RichTextEditor } from "../../../components/ui/rich-text-editor";
+import { GooglePlacesInput } from "../../../components/google-places/google-places-input";
+import { propertyFormValidationSchema } from "./validation";
 
-const propertyFormSchema = yup.object().shape({
-  email: yup.string().required(),
-  title: yup.string().required(),
-  description: yup.string().required(),
-  coordinates: yup.object().shape({
-    lat: yup.number().required(),
-    long: yup.number().required()
-  }),
-  contactNo: yup.number().required(),
-  images:  yup.array().of(
-    yup.object().shape({
-      name: yup.string().required(),
-      imageUrl: yup.string().required(),
-      type: yup.string().required(),
-      size: yup.number().positive().required()
-    })).min(1),
-  
-})
+const propertyFormValidation = propertyFormValidationSchema();
 
 export const  PropertyEditPage = () => {
 
@@ -51,7 +35,7 @@ export const  PropertyEditPage = () => {
     email: propertyDetails?.email || "",
     title: propertyDetails?.title || "",
     description: propertyDetails?.description ||"",
-    coordinates: propertyDetails?.coordinates || {lat: 0, long: 0},
+    coordinates: propertyDetails?.coordinates || {lat: 0, lng: 0, address: ""},
     contactNo: propertyDetails?.contactNo || 0,
     images: propertyDetails?.images || [],
   }
@@ -65,7 +49,7 @@ export const  PropertyEditPage = () => {
     formState: { errors },
 } = useForm({
     defaultValues: propertyFormDefaultValues,
-    resolver: yupResolver(propertyFormSchema),
+    resolver: yupResolver(propertyFormValidation),
 });
 
 const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -73,6 +57,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(editProperty({data, navigate}))
 };
 
+console.log('60', errors, watch('coordinates'))
 
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
@@ -133,35 +118,14 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                     />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 w-full items-center gap-1.5">
-                  <div className="grid w-full items-center gap-1.5">
-                      <label htmlFor="phone" className="text-sm">
-                          Lat (required)
-                      </label>
-                      <Input
-                          disabled={propertyDetailsLoading}
-                          type="number"
-                          id="coordinates"
-                          placeholder="Your lat no"
-                          onChange={(e)=> setValue('coordinates', {...watch('coordinates'), lat: +e.target.value})}
-                          error={errors?.coordinates?.message}
-                          value={watch('coordinates')?.lat}
-                      />
-                  </div>
-                  <div className="grid w-full items-center gap-1.5">
-                      <label htmlFor="phone" className="text-sm">
-                      Long(required)
-                      </label>
-                      <Input
-                          disabled={propertyDetailsLoading}
-                          type="number"
-                          id="coordinates"
-                          placeholder="Your long no"
-                          onChange={(e)=> setValue('coordinates', {...watch('coordinates'), long: +e.target.value})}
-                          error={errors?.coordinates?.message}
-                          value={watch('coordinates')?.lat}
-                      />
-                  </div>
+                <div className="grid w-full items-center gap-1.5">
+                    <label htmlFor="phone" className="text-sm">
+                        Location (required)
+                    </label>
+                    <GooglePlacesInput 
+                    value={watch('coordinates')?.address}
+                    setValue={(value: any) => setValue('coordinates', value)}
+                    error={errors?.coordinates?.message || errors?.coordinates?.lat?.message || errors?.coordinates?.lng?.message}/>
                 </div>
 
                 <div className="grid w-full items-center gap-1.5">

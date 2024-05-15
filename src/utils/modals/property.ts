@@ -20,5 +20,6 @@ interface ImageModal {
 
 interface CoordinateModal {
   lat: number;
-  long: number
+  lng: number;
+  address: string;
 }

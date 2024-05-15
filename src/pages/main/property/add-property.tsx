@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { cn } from "../../../lib/utils"
 import { Button } from "../../../components/ui/button"
 import { Input } from "../../../components/ui/input"
@@ -17,28 +18,11 @@ import { Loader } from "lucide-react";
 import { Card } from "../../../components/ui/card";
 import { RoutesName } from "../../../utils/constant";
 import { FileInput } from "../../../components/ui/drag-drop";
-import { useState } from "react";
-import { error } from "console";
 import { RichTextEditor } from "../../../components/ui/rich-text-editor";
+import { GooglePlacesInput } from "../../../components/google-places/google-places-input";
+import { propertyFormValidationSchema } from "./validation";
 
-const propertyFormSchema = yup.object().shape({
-  email: yup.string().required(),
-  title: yup.string().required(),
-  description: yup.string().required(),
-  coordinates: yup.object().shape({
-    lat: yup.number().required(),
-    long: yup.number().required()
-  }),
-  contactNo: yup.number().required(),
-  images:  yup.array().of(
-    yup.object().shape({
-      name: yup.string().required(),
-      imageUrl: yup.string().required(),
-      type: yup.string().required(),
-      size: yup.number().positive().required()
-    })).min(1),
-  
-})
+const propertyFormValidation = propertyFormValidationSchema()
 
 const propertyFormDefaultValues = {
   email: "",
@@ -46,7 +30,8 @@ const propertyFormDefaultValues = {
   description: "",
   coordinates: {
     lat: 0,
-    long: 0
+    lng: 0,
+    address: ""
   },
   contactNo: 0,
   images: [],
@@ -69,7 +54,7 @@ export const  PropertyAddPage = () => {
     formState: { errors },
 } = useForm({
     defaultValues: propertyFormDefaultValues,
-    resolver: yupResolver(propertyFormSchema),
+    resolver: yupResolver(propertyFormValidation),
 });
 
 const { propertyDetailsLoading} = useTypedSelector((state) => state.Property);
@@ -139,35 +124,14 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                     />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 w-full items-center gap-1.5">
-                  <div className="grid w-full items-center gap-1.5">
-                      <label htmlFor="phone" className="text-sm">
-                          Lat (required)
-                      </label>
-                      <Input
-                          value={watch('coordinates')?.lat}
-                          disabled={propertyDetailsLoading}
-                          type="number"
-                          id="coordinates"
-                          placeholder="Your lat no"
-                          onChange={(e)=> setValue('coordinates', {...watch('coordinates'), lat: +e.target.value})}
-                          error={errors?.coordinates?.message}
-                      />
-                  </div>
-                  <div className="grid w-full items-center gap-1.5">
-                      <label htmlFor="phone" className="text-sm">
-                      Long (required)
-                      </label>
-                      <Input
-                      value={watch('coordinates')?.long}
-                          disabled={propertyDetailsLoading}
-                          type="number"
-                          id="coordinates"
-                          placeholder="Your long no"
-                          onChange={(e)=> setValue('coordinates', {...watch('coordinates'), long: +e.target.value})}
-                          error={errors?.coordinates?.message}
-                      />
-                  </div>
+                <div className="grid w-full items-center gap-1.5">
+                    <label htmlFor="phone" className="text-sm">
+                        Location (required)
+                    </label>
+                    <GooglePlacesInput 
+                    value={watch('coordinates')?.address}
+                    setValue={(value: any) => setValue('coordinates', value)}
+                    error={errors?.coordinates?.message || errors?.coordinates?.lat?.message || errors?.coordinates?.lng?.message}/>
                 </div>
 
                 <div className="grid w-full items-center gap-1.5">

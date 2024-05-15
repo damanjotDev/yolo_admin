@@ -50,8 +50,9 @@ export const FileInput = ({
       }
 
       // Update state with new files
+      callBack([...ownerLicense, ...newFiles]);
       setOwnerLicense((prevOwnerLicense) => [...prevOwnerLicense, ...newFiles]);
-      callBack(newFiles);
+     
 
       setIsUpload(false)
       
