@@ -1,25 +1,27 @@
 
-import { cn } from "../../../lib/utils"
-import { Button } from "../../../components/ui/button"
-import { Input } from "../../../components/ui/input"
-import { Textarea } from "../../../components/ui/textarea";
+import { useState } from "react";
+import { 
+  Textarea,
+  Button,
+  Input,
+  Card,
+  FileInput,
+  RichTextEditor,
+  GooglePlacesInput
+ } from "../../../components/ui";
 import {
   yupResolver,
   yup,
   useForm,
   SubmitHandler,
   FieldValues,
-} from "../../../utils/react-hook-form";
+  RoutesName, 
+  cn
+} from "../../../utils";
 import { editProperty } from "../../../services"
 import { useAppDispatch, useTypedSelector } from "../../../stateStore";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
-import { Card } from "../../../components/ui/card";
-import { RoutesName } from "../../../utils/constant";
-import { FileInput } from "../../../components/ui/drag-drop";
-import { useState } from "react";
-import { RichTextEditor } from "../../../components/ui/rich-text-editor";
-import { GooglePlacesInput } from "../../../components/google-places/google-places-input";
 import { propertyFormValidationSchema } from "./validation";
 
 const propertyFormValidation = propertyFormValidationSchema();
