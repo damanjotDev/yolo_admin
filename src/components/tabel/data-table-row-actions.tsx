@@ -11,8 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { ServiceActions, PropertyActions } from "../../reducers"
-import { removeProperty, removeService } from "../../services"
+import { ServiceActions, PropertyActions, UserActions } from "../../reducers"
+import { removeProperty, removeService, removeUser } from "../../services"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { useAppDispatch } from "../../stateStore"
@@ -44,6 +44,11 @@ export function DataTableRowActions<TData>({
         navigate(RoutesName.PropertyEdit)
         break;
 
+      case 'users':
+        dispatch(UserActions.setUserDetails(row?.original))
+        navigate(RoutesName.UserEdit)
+        break;
+
       default:
         return
     }
@@ -57,6 +62,10 @@ export function DataTableRowActions<TData>({
 
       case 'properties':
         dispatch(removeProperty({...row?.original}))
+        break;
+
+      case 'users':
+        dispatch(removeUser({...row?.original}))
         break;
       
       default:
@@ -86,6 +95,16 @@ export function DataTableRowActions<TData>({
     </DropdownMenuContent>:null}
 
     {label==="properties"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+    {label==="users"?
       <DropdownMenuContent  align="end" className="w-[160px]">
       <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
       {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}

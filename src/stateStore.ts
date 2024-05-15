@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { AdminReducer, PropertyReducer, ServiceReducer } from "./reducers";
+import { AdminReducer, PropertyReducer, ServiceReducer, UserReducer } from "./reducers";
 
 
 
@@ -11,14 +11,15 @@ import { AdminReducer, PropertyReducer, ServiceReducer } from "./reducers";
 const rootReducer = combineReducers({
   Admin: AdminReducer,
   Service: ServiceReducer,
-  Property: PropertyReducer
+  Property: PropertyReducer,
+  User: UserReducer
 });
 
 // Manual persist configuration for specific reducers
 const persistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['Admin', 'Service', 'Property']
+  whitelist: ['Admin', 'Service', 'Property', 'User']
    // Specify the reducers you want to persist
 };
 

@@ -21,6 +21,7 @@ export const RoutesName = {
 
 
         Dashboard: '/',
+
         Services: '/services',
         ServiceAdd: '/services/add',
         ServiceEdit: '/services/edit',
@@ -29,8 +30,11 @@ export const RoutesName = {
         PropertyAdd: '/properties/add',
         PropertyEdit: '/properties/edit',
 
+        Users: '/users',
+        UserAdd: '/users/add',
+        UserEdit: '/users/edit',
+
         Rooms: '/rooms',
-        Users: 'users',
         Categories: '/categories',
         Event: '/events',
         Reviews: 'reviews'

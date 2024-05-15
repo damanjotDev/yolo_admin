@@ -9,6 +9,8 @@ import { IoMdAdd } from "../../utils/icons"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { CalendarDateRangePicker } from "../../pages/main/dashboard/components/date-range-picker"
+import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { AvailableUserStatus } from "../../utils/modals"
 
 
 interface DataTableToolbarProps<TData> {
@@ -29,6 +31,10 @@ export function DataTableToolbar<TData>({
 
       case 'properties':
         navigate(RoutesName.PropertyAdd)
+        break;
+
+      case 'users':
+        navigate(RoutesName.UserAdd)
         break;
 
       default:
@@ -102,6 +108,43 @@ export function DataTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
+        {/* <CalendarDateRangePicker onDateChange = {(value)=> console.log("value",value)}/> */}
+      </div> : null}
+
+      {label === "users" ?
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="ml-auto hidden h-8 lg:flex"
+          onClick={handleAdd}
+        >
+          <IoMdAdd className="mr-1 h-4 w-4" />
+          {"Add User"}
+        </Button>
+        <Input
+          placeholder="Filter email..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="h-8 w-[150px] lg:w-[250px]"
+        />
+        <Input
+          placeholder="Filter name..."
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="h-8 w-[150px] lg:w-[250px]"
+        />
+        {table.getColumn("status") && (
+          <DataTableFacetedFilter
+            column={table.getColumn("status")}
+            title="Status"
+            options={AvailableUserStatus}
+          />
+        )}
         {/* <CalendarDateRangePicker onDateChange = {(value)=> console.log("value",value)}/> */}
       </div> : null}
       <DataTableViewOptions table={table} />

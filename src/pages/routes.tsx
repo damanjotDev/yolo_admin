@@ -12,6 +12,9 @@ import { ServiceEditPage } from './main/service/edit-service';
 import { PropertyPage } from './main/property';
 import { PropertyAddPage } from './main/property/add-property';
 import { PropertyEditPage } from './main/property/edit-property';
+import { UserAddPage } from './main/user/add-user';
+import { UserEditPage } from './main/user/edit-user';
+import { UserPage } from './main/user';
 
 
 const RouteHanding = () => {
@@ -45,6 +48,12 @@ const RouteHanding = () => {
                                <Route path={RoutesName.Properties} element={<PropertyPage/>} />
                               <Route path={RoutesName.PropertyAdd} element={<PropertyAddPage/>} />
                               <Route path={RoutesName.PropertyEdit} element={<PropertyEditPage/>} />
+
+                              {/* User Section */}
+                              <Route path={RoutesName.Users} element={<UserPage/>} />
+                              <Route path={RoutesName.UserAdd} element={<UserAddPage/>} />
+                              <Route path={RoutesName.UserEdit} element={<UserEditPage/>} />
+                              
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />

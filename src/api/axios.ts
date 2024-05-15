@@ -96,6 +96,13 @@ export const fetchProperties = (data: any) => axiosInstance.get('/v1/property/ge
 export const deleteProperty = (id: string) => axiosInstance.delete(`/v1/property/delete/${id}`)
 
 
+//----------------------------------------------------------------------user
+export const createUser = (data: any) => axiosInstance.post('/v1/user/create', data);
+export const updateUser = (id: string,data: any) => axiosInstance.put(`/v1/user/update/${id}`, data);
+export const fetchUser = (id: string) => axiosInstance.get(`/v1/user/get/${id}`)
+export const fetchUsers = (data: any) => axiosInstance.get('/v1/user/getall', {data});
+export const deleteUser = (id: string) => axiosInstance.delete(`/v1/user/delete/${id}`)
+
 
 
 
