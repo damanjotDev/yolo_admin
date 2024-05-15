@@ -59,8 +59,6 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(editProperty({data, navigate}))
 };
 
-console.log('60', errors, watch('coordinates'))
-
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
 

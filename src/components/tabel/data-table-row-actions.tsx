@@ -11,8 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { ServiceActions, PropertyActions, UserActions } from "../../reducers"
-import { removeProperty, removeService, removeUser } from "../../services"
+import { ServiceActions, PropertyActions, UserActions, EventActions, CategoryActions, TagActions } from "../../reducers"
+import { removeCategory, removeEvent, removeProperty, removeService, removeTag, removeUser } from "../../services"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { useAppDispatch } from "../../stateStore"
@@ -49,6 +49,21 @@ export function DataTableRowActions<TData>({
         navigate(RoutesName.UserEdit)
         break;
 
+      case 'categories':
+        dispatch(CategoryActions.setCategoryDetails(row?.original))
+        navigate(RoutesName.CategoryEdit)
+        break;
+
+      case 'events':
+        dispatch(EventActions.setEventDetails(row?.original))
+        navigate(RoutesName.EventEdit)
+        break;
+
+      case 'tags':
+        dispatch(TagActions.setTagDetails(row?.original))
+        navigate(RoutesName.TagEdit)
+        break;
+
       default:
         return
     }
@@ -66,6 +81,18 @@ export function DataTableRowActions<TData>({
 
       case 'users':
         dispatch(removeUser({...row?.original}))
+        break;
+
+      case 'categories':
+        dispatch(removeCategory({...row?.original}))
+        break;
+
+      case 'events':
+        dispatch(removeEvent({...row?.original}))
+        break;
+
+      case 'tags':
+        dispatch(removeTag({...row?.original}))
         break;
       
       default:
@@ -113,6 +140,38 @@ export function DataTableRowActions<TData>({
         <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
       </DropdownMenuItem>
     </DropdownMenuContent>:null}
+
+    {label==="categories"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+    {label==="events"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+    {label==="tags"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+
     </DropdownMenu>
   )
 }

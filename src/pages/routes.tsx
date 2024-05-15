@@ -15,6 +15,15 @@ import { PropertyEditPage } from './main/property/edit-property';
 import { UserAddPage } from './main/user/add-user';
 import { UserEditPage } from './main/user/edit-user';
 import { UserPage } from './main/user';
+import { CategoryPage } from './main/category';
+import { CategoryAddPage } from './main/category/add-category';
+import { CategoryEditPage } from './main/category/edit-category';
+import { EventPage } from './main/event';
+import { EventAddPage } from './main/event/add-event';
+import { EventEditPage } from './main/event/edit-event';
+import { TagPage } from './main/tag';
+import { TagAddPage } from './main/tag/add-tag';
+import { TagEditPage } from './main/tag/edit-tag';
 
 
 const RouteHanding = () => {
@@ -54,6 +63,20 @@ const RouteHanding = () => {
                               <Route path={RoutesName.UserAdd} element={<UserAddPage/>} />
                               <Route path={RoutesName.UserEdit} element={<UserEditPage/>} />
                               
+                               {/* Category Section */}
+                               <Route path={RoutesName.Categories} element={<CategoryPage/>} />
+                              <Route path={RoutesName.CategoryAdd} element={<CategoryAddPage/>} />
+                              <Route path={RoutesName.CategoryEdit} element={<CategoryEditPage/>} />
+                              
+                               {/* Event Section */}
+                               <Route path={RoutesName.Event} element={<EventPage/>} />
+                              <Route path={RoutesName.EventAdd} element={<EventAddPage/>} />
+                              <Route path={RoutesName.EventEdit} element={<EventEditPage/>} />
+
+                                {/* Event Section */}
+                              <Route path={RoutesName.Tags} element={<TagPage/>} />
+                              <Route path={RoutesName.TagAdd} element={<TagAddPage/>} />
+                              <Route path={RoutesName.TagEdit} element={<TagEditPage/>} />
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />

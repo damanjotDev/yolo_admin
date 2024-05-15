@@ -61,10 +61,10 @@ const useNavbarRoutes = () =>{
         },
         {
             id: '8',
-            navigate: () => navigate(RoutesName.Reviews),
+            navigate: () => navigate(RoutesName.Tags),
             icon: MdOutlineAnalytics,
-            active: RoutesName.Reviews===location.pathname,
-            label: 'Reviews'
+            active: RoutesName.Tags===location.pathname,
+            label: 'Tags'
         }
     ]
 

@@ -34,8 +34,19 @@ export const RoutesName = {
         UserAdd: '/users/add',
         UserEdit: '/users/edit',
 
-        Rooms: '/rooms',
         Categories: '/categories',
+        CategoryAdd: '/categories/add',
+        CategoryEdit: '/categories/edit',
+
+        Events: '/events',
+        EventAdd: '/events/add',
+        EventEdit: '/events/edit',
+
+        Tags: '/tags',
+        TagAdd: '/tags/add',
+        TagEdit: '/tags/edit',
+
+        Rooms: '/rooms',
         Event: '/events',
         Reviews: 'reviews'
 

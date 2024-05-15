@@ -1,3 +1,6 @@
 export * from "./service"
 export * from "./property"
 export * from "./user"
+export * from "./category"
+export * from "./event"
+export * from "./tag"

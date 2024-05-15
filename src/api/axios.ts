@@ -104,6 +104,29 @@ export const fetchUsers = (data: any) => axiosInstance.get('/v1/user/getall', {d
 export const deleteUser = (id: string) => axiosInstance.delete(`/v1/user/delete/${id}`)
 
 
+//----------------------------------------------------------------------category
+export const createCategory = (data: any) => axiosInstance.post('/v1/category/create', data);
+export const updateCategory = (id: string,data: any) => axiosInstance.put(`/v1/category/update/${id}`, data);
+export const fetchCategory = (id: string) => axiosInstance.get(`/v1/category/get/${id}`)
+export const fetchCategories = (data: any) => axiosInstance.get('/v1/category/getall', {data});
+export const deleteCategory = (id: string) => axiosInstance.delete(`/v1/category/delete/${id}`);
+
+//----------------------------------------------------------------------event
+export const createEvent = (data: any) => axiosInstance.post('/v1/event/create', data);
+export const updateEvent = (id: string,data: any) => axiosInstance.put(`/v1/event/update/${id}`, data);
+export const fetchEvent = (id: string) => axiosInstance.get(`/v1/category/event/${id}`)
+export const fetchEvents = (data: any) => axiosInstance.get('/v1/event/getall', {data});
+export const deleteEvent = (id: string) => axiosInstance.delete(`/v1/event/delete/${id}`)
+
+
+//----------------------------------------------------------------------tag
+export const createTag = (data: any) => axiosInstance.post('/v1/tag/create', data);
+export const updateTag = (id: string,data: any) => axiosInstance.put(`/v1/tag/update/${id}`, data);
+export const fetchTag = (id: string) => axiosInstance.get(`/v1/tag/event/${id}`)
+export const fetchTags = (data: any) => axiosInstance.get('/v1/tag/getall', {data});
+export const deleteTag = (id: string) => axiosInstance.delete(`/v1/tag/delete/${id}`)
+
+
 
 
 

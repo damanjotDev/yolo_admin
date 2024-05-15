@@ -185,7 +185,7 @@ console.log('user', userDetails)
                     text-white 
                     py-3
                     px-6"
-                    onClick={()=> navigate(RoutesName.Properties)}>
+                    onClick={()=> navigate(RoutesName.Users)}>
                         Go Back
                     </Button>
                 </div>
