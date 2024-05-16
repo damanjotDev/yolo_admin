@@ -47,6 +47,9 @@ export const RoutesName = {
         TagEdit: '/tags/edit',
 
         Rooms: '/rooms',
+        RoomAdd: '/rooms/add',
+        RoomEdit: '/rooms/edit',
+
         Event: '/events',
         Reviews: 'reviews'
 

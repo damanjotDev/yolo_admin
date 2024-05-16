@@ -49,6 +49,10 @@ export function DataTableToolbar<TData>({
         navigate(RoutesName.TagAdd)
         break;
 
+      case 'rooms':
+        navigate(RoutesName.RoomAdd)
+        break;
+
       default:
         return;
     }
@@ -220,6 +224,36 @@ export function DataTableToolbar<TData>({
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
+          }
+          className="h-8 w-[150px] lg:w-[250px]"
+        />
+        {/* <CalendarDateRangePicker onDateChange = {(value)=> console.log("value",value)}/> */}
+      </div> : null}
+
+      {label === "rooms" ?
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="ml-auto hidden h-8 lg:flex"
+          onClick={handleAdd}
+        >
+          <IoMdAdd className="mr-1 h-4 w-4" />
+          {"Add Room"}
+        </Button>
+        <Input
+          placeholder="Filter title..."
+          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("title")?.setFilterValue(event.target.value)
+          }
+          className="h-8 w-[150px] lg:w-[250px]"
+        />
+         <Input
+          placeholder="Filter price..."
+          value={(table.getColumn("price")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("price")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
