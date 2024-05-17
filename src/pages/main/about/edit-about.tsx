@@ -26,8 +26,9 @@ import {
 import { editAbout } from "../../../services"
 import { useAppDispatch, useTypedSelector } from "../../../stateStore";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "lucide-react";
+import { Loader, X } from "lucide-react";
 import { aboutFormValidationSchema } from "./validation";
+import { AvailableSocialTypes } from "../../../utils/modals";
 
 const aboutFormValidation = aboutFormValidationSchema();
 
@@ -62,10 +63,32 @@ export const  AboutEditPage = () => {
     resolver: yupResolver(aboutFormValidation),
 });
 
+const [socialLinkState, setSocialLinkState] = useState({type: "", link: ""})
+const [socialLinkError, setSocialLinkError] = useState({type: "", link: ""})
+
 const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   data['id'] = aboutDetails?.id
   dispatch(editAbout({data, navigate}))
 };
+
+const handleSocialLink = () => {
+  if(!socialLinkState?.type){
+    setSocialLinkError({...socialLinkError, type: 'social type required'})
+  }
+  else if (!socialLinkState?.link)(
+    setSocialLinkError({...socialLinkError, link: 'social link required'})
+  )
+  else{
+    setSocialLinkError({type: "", link: ""});
+    setValue('socialLinks', [...watch('socialLinks'),socialLinkState])
+    setSocialLinkState({type: "", link: ""})
+  }
+}
+
+const handleDeleteSocialLink = (value: number) => {
+  const newData =  watch('socialLinks')?.filter((item, index)=> index!==value)
+  setValue('socialLinks', newData);
+}
 
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
@@ -186,6 +209,84 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                         setValue={(value: string)=> setValue('description', value)}
                         error={errors?.description?.message}
                     />
+                </div>
+
+                <div className="grid w-full items-center gap-2 mt-10">
+                    <label htmlFor="description" className="text-sm">
+                        Social Links (optional)
+                    </label>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="bg-accent w-[120px]"
+                      onClick={() => handleSocialLink()}
+                    >Add
+                    </Button>
+
+                    <div className="w-full flex items-center gap-5">
+
+                      <div className="w-[150px] flex flex-col items-center gap-1.5">
+                        <label htmlFor="password" className="text-sm">
+                          Social Type (required)
+                        </label>
+                        <Select 
+                        onValueChange={(value: string)=> setSocialLinkState({...socialLinkState, type: value})} 
+                        value={socialLinkState?.type}>
+                          <SelectTrigger className="w-full" error={socialLinkError?.type}>
+                            <SelectValue placeholder="Select  Type"/>
+                          </SelectTrigger>
+                          <SelectContent >
+                              {AvailableSocialTypes?.map((item)=>(
+                                 <SelectItem value={item.value}>{item.title}</SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div className="flex flex-1 flex-col gap-1.5">
+                        <label htmlFor="phone" className="text-sm">
+                            Social Link (required)
+                        </label>
+                        <Input
+                            disabled={aboutDetailsLoading}
+                            type="text"
+                            id="link"
+                            placeholder="Your social link"
+                            onChange={(e)=>{
+                              setSocialLinkState({...socialLinkState,link: e.target.value})
+                            }}
+                            error={socialLinkError?.link}
+                        />
+                      </div>
+
+                    </div>
+
+                    {watch("socialLinks")?.map((item, index)=>(
+                       <div className="w-full flex items-center gap-5 mt-4">
+
+                        <div className="w-[150px] flex flex-col gap-1.5 bg-accent">
+                          <Input
+                              disabled={aboutDetailsLoading}
+                              type="text"
+                              id="link"
+                              value={item.type}
+                          />
+                        </div>
+  
+                        <div className="flex flex-1 flex-col gap-1.5 bg-accent">
+                          <Input
+                              disabled={aboutDetailsLoading}
+                              type="text"
+                              id="link"
+                              value={item.link}
+                          />
+                        </div>
+
+                         <X className="h-4 w-4" onClick={()=> handleDeleteSocialLink(index)} />
+                     </div>
+                    ))}
+
                 </div>
 
                 <div className="flex items-center justify-end gap-5 mt-12">
