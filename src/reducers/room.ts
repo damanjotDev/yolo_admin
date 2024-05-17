@@ -38,6 +38,8 @@ const RoomSlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addRoom.pending, (state) => {
       state.roomDetailsLoading = true
     })

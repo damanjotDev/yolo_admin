@@ -10,19 +10,19 @@ const useProfileDropdown = () =>{
     const routes = [
         {
             id: 'profile',
-            navigate: () => navigate(RoutesName.Profile),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: FaRegCircleUser,
             label: 'Profile'
         },
         {
             id: 'setting',
-            navigate: () => navigate(RoutesName.Analytics),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: IoSettingsOutline,
             label: 'Settings'
         },
         {
             id: 'logout',
-            navigate: () => navigate(RoutesName.Orders),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: IoLogOutOutline,
             label: 'Logout'
         }

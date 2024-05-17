@@ -6,9 +6,12 @@ import { IoLocation, MdKeyboardDoubleArrowRight } from "../../utils/icons"
 import { RoutesName } from '../../utils/constant';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
+import { useTypedSelector } from '../../stateStore';
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
+
+  const { isLogin } = useTypedSelector((state) => state.Admin);
   return (
     <div className='w-full h-full'>
       {/* contact main section */}
@@ -46,7 +49,7 @@ const NotFoundPage = () => {
               <div className='flex items-center gap-2 text-white'>
                 <div
                   className='flex cursor-pointer transition-all hover:text-primary-foreground'
-                  onClick={() => navigate(RoutesName.Home)}>
+                  onClick={() => navigate(isLogin?RoutesName.Dashboard:RoutesName.Login)}>
                   <TypographyP title='Home' className='opacity-85 ' />
                 </div>
 

@@ -33,9 +33,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-    const { adminDetailsLoading, adminDetails, error} = useTypedSelector(
-        (state) => state.Admin
-    );
+    const { adminDetailsLoading, adminDetails, error} = useTypedSelector((state) => state.Admin);
 
 
     const {
@@ -51,8 +49,7 @@ const LoginPage = () => {
     });
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        dispatch(adminLogin({...data}))
-        console.log('working')
+        dispatch(adminLogin({data: data, navigate}))
     };
 
     return (

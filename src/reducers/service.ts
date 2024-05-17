@@ -38,6 +38,8 @@ const ServicesSlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addService.pending, (state) => {
       state.serviceDetailsLoading = true
     })

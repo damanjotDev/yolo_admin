@@ -38,6 +38,8 @@ const CategorySlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addCategory.pending, (state) => {
       state.categoryDetailsLoading = true
     })

@@ -38,6 +38,8 @@ const EventSlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addEvent.pending, (state) => {
       state.eventDetailsLoading = true
     })

@@ -1,26 +1,7 @@
 export const RoutesName = {
-        Signup: '/signup',
-        Login: '/login',
-        ForgetPassword: '/forgetPassword',
-        NewPassword: '/newPassword',
-        VerifyEmail: '/verifyEmail',
-        Home: '/home',
-        Contact:'/contact',
-        OurTeam:'/our-team',
-        OurTeamDetails: 'our-team/:id',
-        OurServices:'/our-services',
-        OurServiceDetails:'/our-services/:id',
-        OurPortfolio:'/our-portfolio',
-        OurPortfolioDetails: '/our-portfolio/:id',
-        NotFound: '/not-found',
-        Pages: '/#',
-        Analytics: '/analytics',
-        Customer: '/customer',
-        Orders: '/orders',
-        Profile: '/profile',
-
-
-        Dashboard: '/',
+        Login: '/',
+        
+        Dashboard: '/dashboard',
 
         Services: '/services',
         ServiceAdd: '/services/add',

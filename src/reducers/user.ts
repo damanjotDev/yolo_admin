@@ -38,6 +38,8 @@ const UserSlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addUser.pending, (state) => {
       state.userDetailsLoading = true
     })

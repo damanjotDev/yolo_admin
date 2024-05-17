@@ -41,6 +41,8 @@ const AdminSlice = createSlice({
   initialState, //the initial state of the slice
   reducers: {}, // action methods
   extraReducers: (builder) => {
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(getAdminDetails.pending, (state) => {
       state.adminDetailsLoading = true
     })

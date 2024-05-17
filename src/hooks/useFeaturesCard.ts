@@ -13,7 +13,7 @@ const useFeatureCardData = () =>{
             id: 'technical',
             title: "Technical Support",
             description: "Our customers get solutions and the business opportunities instead.",
-            navigate: () => navigate(RoutesName.Home),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: FaAngleRight,
             imageUrl: TechnicalImageIcon
         },
@@ -21,7 +21,7 @@ const useFeatureCardData = () =>{
             id: 'bussiness',
             title: "Business Planning",
             description: "Our purpose is to build solutions that remove the barriers preventing people.",
-            navigate: () => navigate(RoutesName.Home),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: FaAngleRight,
             imageUrl: TechnicalImageIcon
         },
@@ -29,7 +29,7 @@ const useFeatureCardData = () =>{
             id: 'security',
             title: "Cyber Security",
             description: "What separates theme from all other web design agencies is the ability.",
-            navigate: () => navigate(RoutesName.Home),
+            navigate: () => navigate(RoutesName.Dashboard),
             icon: FaAngleRight,
             imageUrl: TechnicalImageIcon
         },

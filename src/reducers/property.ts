@@ -38,6 +38,8 @@ const PropertySlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addProperty.pending, (state) => {
       state.propertyDetailsLoading = true
     })

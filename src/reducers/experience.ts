@@ -36,6 +36,8 @@ const ExperienceSlice = createSlice({
   }, // action methods
   extraReducers: (builder) => {
 
+    builder.addCase('RESET_STATE', () => initialState);
+
     builder.addCase(addExperience.pending, (state) => {
       state.experienceDetailsLoading = true
     })
