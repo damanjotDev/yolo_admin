@@ -133,6 +133,12 @@ export const fetchRoom = (id: string) => axiosInstance.get(`/v1/room/event/${id}
 export const fetchRooms = (data: any) => axiosInstance.get('/v1/room/getall', {data});
 export const deleteRoom = (id: string) => axiosInstance.delete(`/v1/room/delete/${id}`)
 
+//----------------------------------------------------------------------room
+export const createAbout = (data: any) => axiosInstance.post('/v1/about/create', data);
+export const updateAbout = (id: string,data: any) => axiosInstance.put(`/v1/about/update/${id}`, data);
+export const fetchAbout = (id: string) => axiosInstance.get(`/v1/about/event/${id}`)
+export const fetchAbouts = (data: any) => axiosInstance.get('/v1/about/getall', {data});
+export const deleteAbout = (id: string) => axiosInstance.delete(`/v1/about/delete/${id}`)
 
 
 

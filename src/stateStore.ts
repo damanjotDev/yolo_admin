@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { AdminReducer, CategoryReducer, EventReducer, PropertyReducer, RoomReducer, ServiceReducer, TagReducer, UserReducer } from "./reducers";
+import { AboutReducer, AdminReducer, CategoryReducer, EventReducer, PropertyReducer, RoomReducer, ServiceReducer, TagReducer, UserReducer } from "./reducers";
 
 
 
@@ -17,13 +17,14 @@ const rootReducer = combineReducers({
   Event: EventReducer,
   Tag: TagReducer,
   Room: RoomReducer,
+  About: AboutReducer,
 });
 
 // Manual persist configuration for specific reducers
 const persistConfig = {
   key: 'root',
   storage: storage,
-   // Specify the reducers you want to persist
+  whitelist: ['Admin', 'Service', 'Property', 'User', 'Category', 'Event', 'Tag', 'Room', 'About'] // Specify the reducers you want to persist
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

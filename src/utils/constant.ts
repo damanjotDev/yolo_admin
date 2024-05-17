@@ -50,6 +50,10 @@ export const RoutesName = {
         RoomAdd: '/rooms/add',
         RoomEdit: '/rooms/edit',
 
+        Abouts: '/abouts',
+        AboutAdd: '/abouts/add',
+        AboutEdit: '/abouts/edit',
+
         Event: '/events',
         Reviews: 'reviews'
 

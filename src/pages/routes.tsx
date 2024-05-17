@@ -27,6 +27,9 @@ import { TagEditPage } from './main/tag/edit-tag';
 import { RoomPage } from './main/room';
 import { RoomAddPage } from './main/room/add-room';
 import { RoomEditPage } from './main/room/edit-room';
+import { AboutPage } from './main/about';
+import { AboutAddPage } from './main/about/add-about';
+import { AboutEditPage } from './main/about/edit-about';
 
 
 const RouteHanding = () => {
@@ -85,6 +88,11 @@ const RouteHanding = () => {
                                <Route path={RoutesName.Rooms} element={<RoomPage/>} />
                               <Route path={RoutesName.RoomAdd} element={<RoomAddPage/>} />
                               <Route path={RoutesName.RoomEdit} element={<RoomEditPage/>} />
+
+                               {/* About Section */}
+                               <Route path={RoutesName.Abouts} element={<AboutPage/>} />
+                              <Route path={RoutesName.AboutAdd} element={<AboutAddPage/>} />
+                              <Route path={RoutesName.AboutEdit} element={<AboutEditPage/>} />
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />
