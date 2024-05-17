@@ -54,9 +54,9 @@ const useNavbarRoutes = () =>{
         },
         {
             id: '7',
-            navigate: () => navigate(RoutesName.Event),
+            navigate: () => navigate(RoutesName.Events),
             icon: MdOutlineAnalytics,
-            active: RoutesName.Event===location.pathname,
+            active: RoutesName.Events===location.pathname,
             label: 'Event'
         },
         {
@@ -72,6 +72,13 @@ const useNavbarRoutes = () =>{
             icon: MdOutlineAnalytics,
             active: RoutesName.Abouts===location.pathname,
             label: 'Abouts'
+        },
+        {
+            id: '10',
+            navigate: () => navigate(RoutesName.Experiences),
+            icon: MdOutlineAnalytics,
+            active: RoutesName.Experiences===location.pathname,
+            label: 'Experiences'
         }
     ]
 

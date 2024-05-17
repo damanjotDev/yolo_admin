@@ -140,6 +140,12 @@ export const fetchAbout = (id: string) => axiosInstance.get(`/v1/about/event/${i
 export const fetchAbouts = (data: any) => axiosInstance.get('/v1/about/getall', {data});
 export const deleteAbout = (id: string) => axiosInstance.delete(`/v1/about/delete/${id}`)
 
+//----------------------------------------------------------------------experience
+export const createExperience = (data: any) => axiosInstance.post('/v1/experience/create', data);
+export const updateExperience = (id: string,data: any) => axiosInstance.put(`/v1/experience/update/${id}`, data);
+export const fetchExperience = (id: string) => axiosInstance.get(`/v1/experience/event/${id}`)
+export const fetchExperiences = (data: any) => axiosInstance.get('/v1/experience/getall', {data});
+export const deleteExperience = (id: string) => axiosInstance.delete(`/v1/experience/delete/${id}`)
 
 
 

@@ -30,6 +30,9 @@ import { RoomEditPage } from './main/room/edit-room';
 import { AboutPage } from './main/about';
 import { AboutAddPage } from './main/about/add-about';
 import { AboutEditPage } from './main/about/edit-about';
+import { ExperiencePage } from './main/experience';
+import { ExperienceAddPage } from './main/experience/add-experience';
+import { ExperienceEditPage } from './main/experience/edit-experience';
 
 
 const RouteHanding = () => {
@@ -75,7 +78,7 @@ const RouteHanding = () => {
                               <Route path={RoutesName.CategoryEdit} element={<CategoryEditPage/>} />
                               
                                {/* Event Section */}
-                               <Route path={RoutesName.Event} element={<EventPage/>} />
+                               <Route path={RoutesName.Events} element={<EventPage/>} />
                               <Route path={RoutesName.EventAdd} element={<EventAddPage/>} />
                               <Route path={RoutesName.EventEdit} element={<EventEditPage/>} />
 
@@ -93,6 +96,11 @@ const RouteHanding = () => {
                                <Route path={RoutesName.Abouts} element={<AboutPage/>} />
                               <Route path={RoutesName.AboutAdd} element={<AboutAddPage/>} />
                               <Route path={RoutesName.AboutEdit} element={<AboutEditPage/>} />
+
+                               {/* Experience Section */}
+                               <Route path={RoutesName.Experiences} element={<ExperiencePage/>} />
+                              <Route path={RoutesName.ExperienceAdd} element={<ExperienceAddPage/>} />
+                              <Route path={RoutesName.ExperienceEdit} element={<ExperienceEditPage/>} />
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />

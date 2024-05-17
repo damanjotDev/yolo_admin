@@ -54,8 +54,10 @@ export const RoutesName = {
         AboutAdd: '/abouts/add',
         AboutEdit: '/abouts/edit',
 
-        Event: '/events',
-        Reviews: 'reviews'
+        Experiences: '/experiences',
+        ExperienceAdd: '/experiences/add',
+        ExperienceEdit: '/experiences/edit',
+
 
 }
 
