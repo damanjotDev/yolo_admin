@@ -13,12 +13,6 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuCheckboxItem,
   MultipleSelect
  } from "../../../components/ui";
 import {
@@ -30,52 +24,39 @@ import {
   RoutesName, 
   cn
 } from "../../../utils";
-import { addRoom, getProperties, getServices } from "../../../services"
+import {  editRoom, getProperties, getServices } from "../../../services"
 import { useAppDispatch, useTypedSelector } from "../../../stateStore";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { roomFormValidationSchema } from "./validation";
 import { AvailableRoomBedTypes } from "../../../utils/modals";
 
+const roomFormValidation = roomFormValidationSchema();
 
-const roomFormValidation = roomFormValidationSchema()
-
-const roomFormDefaultValues = {
-  title: "",
-  images: [],
-  price: 1,
-  adult: {
-    min: 1,
-    max: 1,
-  },
-  children: {
-    min: 1,
-    max: 1,
-  },
-  bookingNight: {
-    min: 1,
-    max: 1,
-  },
-  bedType: "",
-  roomArea: 0,
-  description: "",
-  coordinates: {
-    lat: 0,
-    lng: 0,
-    address: ""
-  },
-  service_ids: [],
-  property_id: 0
-}
-
-// This can come from your database or API.
-
-
-export const  RoomAddPage = () => {
+export const  RoomEditPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
  
+  const { roomDetailsLoading, roomDetails} = useTypedSelector((state) => state.Room);
+  const { propertiesLoading, properties, error } = useTypedSelector((state) => state.Property);
+  const { servicesLoading, services } = useTypedSelector((state) => state.Service);
+  
+  const roomFormDefaultValues = {
+    title: roomDetails?.title || "",
+    images: roomDetails?.images || [],
+    price: roomDetails?.price || 1,
+    adult: roomDetails?.adult || { min: 1, max: 1},
+    children: roomDetails?.children || { min: 1, max: 1},
+    bookingNight: roomDetails?.bookingNight || { min: 1, max: 1},
+    bedType: roomDetails?.bedType || "",
+    roomArea: roomDetails?.roomArea || 0,
+    description: roomDetails?.description || "",
+    coordinates: roomDetails?.coordinates || { lat: 0, lng: 0, address: ""},
+    service_ids: roomDetails?.services?.map((item)=> ({value: item.id, label: item.title})) || [],
+    property_id: roomDetails?.property_id || 0
+  }
+
   const {
     register,
     handleSubmit,
@@ -88,31 +69,26 @@ export const  RoomAddPage = () => {
     resolver: yupResolver(roomFormValidation),
 });
 
-const { roomDetailsLoading} = useTypedSelector((state) => state.Room);
-const { propertiesLoading, properties, error } = useTypedSelector((state) => state.Property);
-const { servicesLoading, services } = useTypedSelector((state) => state.Service);
-
-
 const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  data['id'] = roomDetails?.id
   data.service_ids = data?.service_ids?.map((ele: any)=>ele.value)
-  dispatch(addRoom({data, navigate}))
+  dispatch(editRoom({data, navigate}))
 };
 
-
-useEffect(()=>{
-  dispatch(getProperties())
-  dispatch(getServices())
-},[])
+  useEffect(()=>{
+    dispatch(getProperties())
+    dispatch(getServices())
+  },[])
 
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
 
       <div className="flex items-center justify-center space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Add Room</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Edit Room</h2>
       </div>
 
       <div className="flex items-center justify-center">
-        <Card className="space-y-4 px-5 py-10 md:w-[60%]">
+      <Card className="space-y-4 px-5 py-10 md:w-[60%]">
           <form
             className="
             w-full
@@ -331,7 +307,7 @@ useEffect(()=>{
                     rounded-lg"
                     >
                         {roomDetailsLoading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
-                        Add
+                        Edit
                     </Button>
 
                     <Button

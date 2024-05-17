@@ -11,7 +11,7 @@ export interface RoomModal {
     roomArea: number;
     description: string;
     coordinates : CoordinateModal;
-    service: ServiceModal;
+    services: ServiceModal[];
     property: PropertyModal;
     service_ids: number[];
     property_id: number;

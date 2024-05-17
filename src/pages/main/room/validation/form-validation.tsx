@@ -34,7 +34,10 @@ export const roomFormValidationSchema = () => {
           lng: yup.number().required(),
           address: yup.string().required(),
         }),
-        service_ids: yup.array().of(yup.number()).default([]),
+        service_ids: yup.array().of(yup.object().shape({
+          label: yup.string().required(),
+          value: yup.number().required()
+        })).default([]),
         property_id: yup.number().required().min(1, 'Please select property'),
       })
 }

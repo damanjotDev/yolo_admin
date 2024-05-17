@@ -1,5 +1,5 @@
 export interface ServiceModal {
-    id: string;
+    id: number;
     title: string;
     images: ImageModal[];
     icons: ImageModal[];
