@@ -15,7 +15,6 @@ export const addUser = createAsyncThunk<any, any>('UserSlice/addUser', async (pa
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getUser = createAsyncThunk<any, any>('UserSlice/getUser', async (pa
 
 export const removeUser = createAsyncThunk<any, any>('UserSlice/removeUser', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteUser(params?.id)
         toast({
             title: "Success",

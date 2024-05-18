@@ -11,7 +11,6 @@ export const SendMail = async (data: any)=>{
           })
           return 
     } catch (error: any) {
-        console.log(error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",

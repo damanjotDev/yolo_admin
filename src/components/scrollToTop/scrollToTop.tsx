@@ -11,7 +11,6 @@ export const ScrollToTop = () => {
 
     useEffect(()=>{
         handleScrollToTop()
-        console.log('working')
     },[pathname])
 
     return (

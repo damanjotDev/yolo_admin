@@ -64,9 +64,6 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
   dispatch(editUser({data, navigate}))
 };
 
-console.log('user', userDetails)
-
-
   return (
     <div className="flex flex-col p-5 pt-6 space-y-4 ">
 

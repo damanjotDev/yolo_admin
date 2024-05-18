@@ -15,7 +15,6 @@ export const addExperience = createAsyncThunk<any, any>('ExperienceSlice/addExpe
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getExperience = createAsyncThunk<any, any>('ExperienceSlice/getExpe
 
 export const removeExperience = createAsyncThunk<any, any>('ExperienceSlice/removeExperience', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteExperience(params?.id)
         toast({
             title: "Success",

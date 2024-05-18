@@ -50,7 +50,6 @@ export const adminLogout = async (dispatch: Function, navigate: Function) => {
             title: "Success"
           })
     } catch (error: any) {
-        console.log('error', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",

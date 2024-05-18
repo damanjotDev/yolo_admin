@@ -15,7 +15,6 @@ export const addCategory = createAsyncThunk<any, any>('CategorySlice/addCategory
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getCategory = createAsyncThunk<any, any>('CategorySlice/getCategory
 
 export const removeCategory = createAsyncThunk<any, any>('CategorySlice/removeCategory', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteCategory(params?.id)
         toast({
             title: "Success",

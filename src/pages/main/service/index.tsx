@@ -15,8 +15,6 @@ export const ServicePage = () => {
       (state) => state.Service
     );
 
-    console.log('services', services);
-
   useEffect(() => {
     dispatch(getServices())
   }, [])

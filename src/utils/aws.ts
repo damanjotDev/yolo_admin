@@ -27,7 +27,6 @@ export const uploadSingleFileOnS3 = async (payload: { file: { originalname: stri
 
         return data;
     } catch (error) {
-        console.error("Error uploading file to S3:", error);
         throw error;
     }
 };

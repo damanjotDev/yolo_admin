@@ -15,7 +15,6 @@ export const addProperty = createAsyncThunk<any, any>('PropertySlice/addProperty
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getProperty = createAsyncThunk<any, any>('PropertySlice/getProperty
 
 export const removeProperty = createAsyncThunk<any, any>('PropertySlice/removeProperty', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteProperty(params?.id)
         toast({
             title: "Success",

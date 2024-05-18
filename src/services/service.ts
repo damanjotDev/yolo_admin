@@ -15,7 +15,6 @@ export const addService = createAsyncThunk<any, any>('ServiceSlice/addService', 
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getService = createAsyncThunk<any, any>('ServiceSlice/getService', 
 
 export const removeService = createAsyncThunk<any, any>('ServiceSlice/removeService', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteService(params?.id)
         toast({
             title: "Success",

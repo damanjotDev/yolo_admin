@@ -54,7 +54,6 @@ export const FileInput = ({
       setIsUpload(false)
       
     } catch (error) {
-      console.log('error', error)
       setIsUpload(false)
       toast({
         variant: "destructive",

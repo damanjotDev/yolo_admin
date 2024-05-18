@@ -15,7 +15,6 @@ export const addTag = createAsyncThunk<any, any>('TagSlice/addTag', async (param
         return thunkApi.fulfillWithValue(data.data)
     } catch (err) {
         const error: any = err;
-        console.log('13', error)
         toast({
             title: "Error ",
             description: error?.message || "Oop's something went wrong!",
@@ -79,7 +78,6 @@ export const getTag = createAsyncThunk<any, any>('TagSlice/getTag', async (param
 
 export const removeTag = createAsyncThunk<any, any>('TagSlice/removeTag', async (params, thunkApi) => {
     try {
-        console.log('params', params)
         await deleteTag(params?.id)
         toast({
             title: "Success",
