@@ -90,7 +90,7 @@ const NotFoundPage = () => {
             px-6
             gradient3
             rounded-full"
-            onClick={()=> navigate(-1)}>
+            onClick={()=> localStorage.getItem('accessToken')?navigate(RoutesName.Dashboard): navigate(RoutesName.Login)}>
                 <TypographyP className="md:text-lg text-white" title="Go Back!" />
             </button>
           </div>

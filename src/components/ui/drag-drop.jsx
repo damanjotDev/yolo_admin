@@ -41,9 +41,6 @@ export const FileInput = ({
   
         // Upload the file
         const result = await filesUpload(file);
-        console.log('result', result)
-        console.log('File uploaded:', result);
-  
         // Assuming each result has a 'fileUrl' property
         const uploadedFile = { ...fileInfo, imageUrl: result?.fileUrl };
         newFiles.push(uploadedFile);

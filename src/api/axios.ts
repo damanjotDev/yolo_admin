@@ -10,7 +10,7 @@ interface ApiConfig {
 
 
 const apiConfig: ApiConfig = {
-  baseURL: `http://localhost:3000` || "",
+  baseURL: process.env.REACT_APP_API_BASE_URL || `http://localhost:3000`,
   timeout: Number(process.env.API_TIMEOUT) || 10000
 };
 

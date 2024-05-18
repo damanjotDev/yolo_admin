@@ -16,7 +16,7 @@ import { useAppDispatch, useTypedSelector } from "../../stateStore";
 import { adminLogin } from "../../services";
 
 const loginFormValidation = yup.object().shape({
-    email: yup.string().email("Invalid email").required("Email is required"),
+    email: yup.string().required("Email is required"),
     password: yup.string().required("Password is required"),
 });
 
@@ -52,6 +52,9 @@ const LoginPage = () => {
         dispatch(adminLogin({data: data, navigate}))
     };
 
+    if(localStorage.getItem('accessToken')){
+        return <Navigate to={RoutesName.Dashboard}/>
+    }
     return (
             <div
             className="
@@ -107,7 +110,7 @@ const LoginPage = () => {
                                 </label>
                                 <Input
                                     disabled={adminDetailsLoading}
-                                    type="email"
+                                    type="text"
                                     id="email"
                                     placeholder="Mail*"
                                     {...register("email")}

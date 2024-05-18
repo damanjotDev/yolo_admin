@@ -42,7 +42,12 @@ export const adminLogin = createAsyncThunk<any,any>('devroninsSlice/devroninsAdm
 
 export const adminLogout = async (navigate: Function) => {
     try {
-        console.log('working')
+        localStorage.clear()
+
+        navigate(RoutesName.Login)
+        toast({
+            title: "Success"
+          })
     } catch (error: any) {
         console.log('error', error)
         toast({

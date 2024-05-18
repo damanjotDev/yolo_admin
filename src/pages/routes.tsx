@@ -33,74 +33,64 @@ import { AboutEditPage } from './main/about/edit-about';
 import { ExperiencePage } from './main/experience';
 import { ExperienceAddPage } from './main/experience/add-experience';
 import { ExperienceEditPage } from './main/experience/edit-experience';
+import { PrivateRoute } from '../components/common/private-route';
 
 
 const RouteHanding = () => {
-      const { isLogin } = useTypedSelector((state) => state.Admin);
-
-      if (!isLogin) {
-            return (
-                  <Routes>
-                        {/* // Route for landing Home Page */}
-                        <Route path="/" element={<LoginPage/>} />
-                        {/* Not Found route */}
-                        <Route path="/not-found" element={<NotFoundPage />} />
-                        <Route path="*" element={<NotFoundPage />} />
-                  </Routes>
-            )
-      }
-      else {
+      const { isLogin } = useTypedSelector((state) => state.Admin)
             return (
                   <div className='w-full min-h-screen bg-accent'>
-                        <Navbar />
+                        {localStorage.getItem('accessToken')&&<Navbar />}
                         <Routes>
+                              <Route path="/" element={<LoginPage/>} />
+
                               {/* // Route for landing Home Page */}
-                              <Route path={RoutesName.Dashboard} element={<DashboardPage />} />
+                              <Route path={RoutesName.Dashboard} element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
 
                               {/* Service Section */}
-                              <Route path={RoutesName.Services} element={<ServicePage/>} />
-                              <Route path={RoutesName.ServiceAdd} element={<ServiceAddPage/>} />
-                              <Route path={RoutesName.ServiceEdit} element={<ServiceEditPage/>} />
+                              <Route path={RoutesName.Services} element={<PrivateRoute><ServicePage/></PrivateRoute>} />
+                              <Route path={RoutesName.ServiceAdd} element={<PrivateRoute><ServiceAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.ServiceEdit} element={<PrivateRoute><ServiceEditPage/></PrivateRoute>} />
 
                                {/* Property Section */}
-                               <Route path={RoutesName.Properties} element={<PropertyPage/>} />
-                              <Route path={RoutesName.PropertyAdd} element={<PropertyAddPage/>} />
-                              <Route path={RoutesName.PropertyEdit} element={<PropertyEditPage/>} />
+                               <Route path={RoutesName.Properties} element={<PrivateRoute><PropertyPage/></PrivateRoute>} />
+                              <Route path={RoutesName.PropertyAdd} element={<PrivateRoute><PropertyAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.PropertyEdit} element={<PrivateRoute><PropertyEditPage/></PrivateRoute>} />
 
                               {/* User Section */}
-                              <Route path={RoutesName.Users} element={<UserPage/>} />
-                              <Route path={RoutesName.UserAdd} element={<UserAddPage/>} />
-                              <Route path={RoutesName.UserEdit} element={<UserEditPage/>} />
+                              <Route path={RoutesName.Users} element={<PrivateRoute><UserPage/></PrivateRoute>} />
+                              <Route path={RoutesName.UserAdd} element={<PrivateRoute><UserAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.UserEdit} element={<PrivateRoute><UserEditPage/></PrivateRoute>} />
                               
                                {/* Category Section */}
-                               <Route path={RoutesName.Categories} element={<CategoryPage/>} />
-                              <Route path={RoutesName.CategoryAdd} element={<CategoryAddPage/>} />
-                              <Route path={RoutesName.CategoryEdit} element={<CategoryEditPage/>} />
+                               <Route path={RoutesName.Categories} element={<PrivateRoute><CategoryPage/></PrivateRoute>} />
+                              <Route path={RoutesName.CategoryAdd} element={<PrivateRoute><CategoryAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.CategoryEdit} element={<PrivateRoute><CategoryEditPage/></PrivateRoute>} />
                               
                                {/* Event Section */}
-                               <Route path={RoutesName.Events} element={<EventPage/>} />
-                              <Route path={RoutesName.EventAdd} element={<EventAddPage/>} />
-                              <Route path={RoutesName.EventEdit} element={<EventEditPage/>} />
+                               <Route path={RoutesName.Events} element={<PrivateRoute><EventPage/></PrivateRoute>} />
+                              <Route path={RoutesName.EventAdd} element={<PrivateRoute><EventAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.EventEdit} element={<PrivateRoute><EventEditPage/></PrivateRoute>} />
 
                                 {/* Event Section */}
-                              <Route path={RoutesName.Tags} element={<TagPage/>} />
-                              <Route path={RoutesName.TagAdd} element={<TagAddPage/>} />
-                              <Route path={RoutesName.TagEdit} element={<TagEditPage/>} />
+                              <Route path={RoutesName.Tags} element={<PrivateRoute><TagPage/></PrivateRoute>} />
+                              <Route path={RoutesName.TagAdd} element={<PrivateRoute><TagAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.TagEdit} element={<PrivateRoute><TagEditPage/></PrivateRoute>} />
 
                                {/* Room Section */}
-                               <Route path={RoutesName.Rooms} element={<RoomPage/>} />
-                              <Route path={RoutesName.RoomAdd} element={<RoomAddPage/>} />
-                              <Route path={RoutesName.RoomEdit} element={<RoomEditPage/>} />
+                               <Route path={RoutesName.Rooms} element={<PrivateRoute><RoomPage/></PrivateRoute>} />
+                              <Route path={RoutesName.RoomAdd} element={<PrivateRoute><RoomAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.RoomEdit} element={<PrivateRoute><RoomEditPage/></PrivateRoute>} />
 
                                {/* About Section */}
-                               <Route path={RoutesName.Abouts} element={<AboutPage/>} />
-                              <Route path={RoutesName.AboutAdd} element={<AboutAddPage/>} />
-                              <Route path={RoutesName.AboutEdit} element={<AboutEditPage/>} />
+                               <Route path={RoutesName.Abouts} element={<PrivateRoute><AboutPage/></PrivateRoute>} />
+                              <Route path={RoutesName.AboutAdd} element={<PrivateRoute><AboutAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.AboutEdit} element={<PrivateRoute><AboutEditPage/></PrivateRoute>} />
 
                                {/* Experience Section */}
-                               <Route path={RoutesName.Experiences} element={<ExperiencePage/>} />
-                              <Route path={RoutesName.ExperienceAdd} element={<ExperienceAddPage/>} />
-                              <Route path={RoutesName.ExperienceEdit} element={<ExperienceEditPage/>} />
+                               <Route path={RoutesName.Experiences} element={<PrivateRoute><ExperiencePage/></PrivateRoute>} />
+                              <Route path={RoutesName.ExperienceAdd} element={<PrivateRoute><ExperienceAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.ExperienceEdit} element={<PrivateRoute><ExperienceEditPage/></PrivateRoute>} />
 
                               {/* Not Found route */}
                               <Route path="/not-found" element={<NotFoundPage />} />
@@ -108,7 +98,6 @@ const RouteHanding = () => {
                         </Routes>
                   </div>
             )
-      }
 }
 
 export { RouteHanding }
