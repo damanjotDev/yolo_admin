@@ -39,7 +39,9 @@ const initialState: AdminInitialStateType = {
 const AdminSlice = createSlice({
   name: "adminSlice", //must be unique for every slice. convention is to put the same as file name
   initialState, //the initial state of the slice
-  reducers: {}, // action methods
+  reducers: {
+    setInitialState: (state, action) => initialState
+  }, // action methods
   extraReducers: (builder) => {
     builder.addCase('RESET_STATE', () => initialState);
 

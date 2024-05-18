@@ -35,7 +35,7 @@ export function UserNav() {
 
   const handleLogout = ()=>{
     setOpen(false)
-    adminLogout(navigate)
+    adminLogout(dispatch,navigate)
   }
 
   return (

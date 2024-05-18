@@ -40,7 +40,6 @@ const RouteHanding = () => {
       const { isLogin } = useTypedSelector((state) => state.Admin)
             return (
                   <div className='w-full min-h-screen bg-accent'>
-                        {localStorage.getItem('accessToken')&&<Navbar />}
                         <Routes>
                               <Route path="/" element={<LoginPage/>} />
 

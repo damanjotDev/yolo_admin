@@ -3,6 +3,7 @@ import { toast } from "../components/ui/use-toast";
 import { adminAuth, getAdmin } from "../api/axios";
 import {  persistor } from "../stateStore";
 import { RoutesName } from "../utils";
+import { adminActions } from "../reducers";
 
 
 export const getAdminDetails = createAsyncThunk<any, any>('adminSlice/getAdminDetails', async (params, thunkApi) => {
@@ -40,10 +41,10 @@ export const adminLogin = createAsyncThunk<any,any>('devroninsSlice/devroninsAdm
     }
 })
 
-export const adminLogout = async (navigate: Function) => {
+export const adminLogout = async (dispatch: Function, navigate: Function) => {
     try {
         localStorage.clear()
-
+        dispatch(adminActions.setInitialState(null))
         navigate(RoutesName.Login)
         toast({
             title: "Success"
