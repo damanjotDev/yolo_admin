@@ -181,7 +181,7 @@ const handleDeleteSocialLink = (value: number) => {
                     <FileInput
                       value = {watch('images')}
                       callBack = {(value: any)=> setValue('images', value)}
-                      count={1}
+                      count={5}
                       formats={["jpg", "jpeg", "png"]}
                       error={errors?.images?.message}
                     />
@@ -194,7 +194,7 @@ const handleDeleteSocialLink = (value: number) => {
                     <FileInput
                       value = {watch('awards')}
                       callBack = {(value: any)=> setValue('awards', value)}
-                      count={1}
+                      count={5}
                       formats={["jpg", "jpeg", "png"]}
                       error={errors?.awards?.message}
                     />

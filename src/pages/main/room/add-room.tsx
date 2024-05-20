@@ -301,7 +301,7 @@ useEffect(()=>{
                     <FileInput
                       value = {watch('images')}
                       callBack = {(value: any)=> setValue('images', value)}
-                      count={1}
+                      count={5}
                       formats={["jpg", "jpeg", "png"]}
                       error={errors?.images?.message}
                     />

@@ -11,7 +11,7 @@ interface ApiConfig {
 
 const apiConfig: ApiConfig = {
   baseURL: process.env.REACT_APP_API_BASE_URL || `http://localhost:3000`,
-  timeout: Number(process.env.API_TIMEOUT) || 10000
+  timeout: Number(process.env.REACT_APP_API_TIMEOUT) || 10000
 };
 
 const axiosInstance: AxiosInstance = axios.create(apiConfig);
