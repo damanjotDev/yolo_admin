@@ -23,6 +23,7 @@ export const FileInput = ({
 
   const [isUpload, setIsUpload] = useState(false);
   const [showImage, setShowImage] = useState(false);
+  const [imageData, setImageData] = useState(null);
 
   const uploadFiles = async(files)=> {
     try {
@@ -166,7 +167,7 @@ export const FileInput = ({
     };
   }, [ownerLicense]);
 
-
+console.log('owenerlicesnse', ownerLicense);
   return (
     <>
       {/* Container Drop */}
@@ -217,7 +218,10 @@ export const FileInput = ({
                 <div className="w-[70%] flex justify-start items-center space-x-4">
                   <div
                     className="text-primary text-[37px] cursor-pointer"
-                    onClick={() => setShowImage(true)}
+                    onClick={() => {
+                      setImageData(img)
+                      setShowImage(true)
+                    }}
                   >
                     {img.type.match(/image.*/i) ? (
                       <FaRegFileImage />
@@ -248,20 +252,20 @@ export const FileInput = ({
                   </div>
                 </div>
               </div>
-
-              <CustomDialog 
-              open={showImage} 
-              setOpen={setShowImage} 
-              title={img?.name} 
-              description={`${Math.floor(img.size / 1024)} KB`}>
-                    <div className="w-full h-full">
-                      <img src={img.imageUrl} className="w-full h-full"/>
-                    </div>
-              </CustomDialog>
             </div>
           ))}
         </div>
       ): null}
+
+              <CustomDialog 
+                  open={showImage} 
+                  setOpen={setShowImage} 
+                  title={imageData?.name} 
+                  description={`${Math.floor(imageData?.size / 1024)} KB`}>
+                        <div className="w-full h-full">
+                          <img src={imageData?.imageUrl} className="w-full h-full"/>
+                        </div>
+              </CustomDialog>
 
       {error &&<span className="text-red-500">{error}</span>}
     </>
