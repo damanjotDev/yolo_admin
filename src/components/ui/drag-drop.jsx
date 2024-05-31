@@ -167,7 +167,6 @@ export const FileInput = ({
     };
   }, [ownerLicense]);
 
-console.log('owenerlicesnse', ownerLicense);
   return (
     <>
       {/* Container Drop */}

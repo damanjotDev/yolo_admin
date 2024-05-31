@@ -158,7 +158,7 @@ export const fileUpload = (data: any) => axiosInstance.post('/v1/fileUpload', da
   onUploadProgress: (progressEvent) => {
     if(progressEvent&&progressEvent.total){
        const progress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-       console.log('progress', progress)
+
     }
    }
 });
