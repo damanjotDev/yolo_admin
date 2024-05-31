@@ -7,6 +7,10 @@ export const RoutesName = {
         HomeAdd: '/homes/add',
         HomeEdit: '/homes/edit',
 
+        Pages: '/pages',
+        PageAdd: '/pages/add',
+        PageEdit: '/pages/edit',
+
         Services: '/services',
         ServiceAdd: '/services/add',
         ServiceEdit: '/services/edit',

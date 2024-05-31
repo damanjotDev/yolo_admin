@@ -11,8 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { ServiceActions, PropertyActions, UserActions, EventActions, CategoryActions, TagActions, RoomActions, AboutActions, ExperienceActions, HomeActions } from "../../reducers"
-import { removeAbout, removeCategory, removeEvent, removeExperience, removeHome, removeProperty, removeRoom, removeService, removeTag, removeUser } from "../../services"
+import { ServiceActions, PropertyActions, UserActions, EventActions, CategoryActions, TagActions, RoomActions, AboutActions, ExperienceActions, HomeActions, PageActions } from "../../reducers"
+import { removeAbout, removeCategory, removeEvent, removeExperience, removeHome, removePage, removeProperty, removeRoom, removeService, removeTag, removeUser } from "../../services"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { useAppDispatch } from "../../stateStore"
@@ -84,6 +84,11 @@ export function DataTableRowActions<TData>({
         navigate(RoutesName.ExperienceEdit)
         break;
 
+      case 'pages':
+        dispatch(PageActions.setPageDetails(row?.original))
+        navigate(RoutesName.PageEdit)
+        break;
+
       default:
         return
     }
@@ -128,8 +133,12 @@ export function DataTableRowActions<TData>({
         break;
 
       case 'experiences':
-      dispatch(removeExperience({...row?.original}))
-      break;
+        dispatch(removeExperience({...row?.original}))
+        break;
+
+      case 'pages':
+        dispatch(removePage({...row?.original}))
+        break;
 
       default:
         return;
@@ -239,6 +248,16 @@ export function DataTableRowActions<TData>({
     </DropdownMenuContent>:null}
 
     {label==="experiences"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
+    {label==="pages"?
       <DropdownMenuContent  align="end" className="w-[160px]">
       <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
       {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}

@@ -37,6 +37,9 @@ import { PrivateRoute } from '../components/common/private-route';
 import { HomePage } from './main/home';
 import { HomeAddPage } from './main/home/home';
 import { HomeEditPage } from './main/home/edit-home';
+import { PagePage } from './main/page';
+import { PageAddPage } from './main/page/add-about';
+import { PageEditPage } from './main/page/edit-about';
 
 
 const RouteHanding = () => {
@@ -53,6 +56,11 @@ const RouteHanding = () => {
                               <Route path={RoutesName.Homes} element={<PrivateRoute><HomePage/></PrivateRoute>} />
                               <Route path={RoutesName.HomeAdd} element={<PrivateRoute><HomeAddPage/></PrivateRoute>} />
                               <Route path={RoutesName.HomeEdit} element={<PrivateRoute><HomeEditPage/></PrivateRoute>} />
+
+                              {/* Page Section */}
+                              <Route path={RoutesName.Pages} element={<PrivateRoute><PagePage/></PrivateRoute>} />
+                              <Route path={RoutesName.PageAdd} element={<PrivateRoute><PageAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.PageEdit} element={<PrivateRoute><PageEditPage/></PrivateRoute>} />
 
                               {/* Service Section */}
                               <Route path={RoutesName.Services} element={<PrivateRoute><ServicePage/></PrivateRoute>} />
