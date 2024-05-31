@@ -146,14 +146,12 @@ export const fetchExperience = (id: string) => axiosInstance.get(`/v1/experience
 export const fetchExperiences = (data: any) => axiosInstance.get('/v1/experience/getall', {data});
 export const deleteExperience = (id: string) => axiosInstance.delete(`/v1/experience/delete/${id}`)
 
-
-
-
-
-
-
-
-
+//----------------------------------------------------------------------home
+export const createHome = (data: any) => axiosInstance.post('/v1/home/create', data);
+export const updateHome = (id: string,data: any) => axiosInstance.put(`/v1/home/update/${id}`, data);
+export const fetchHome = (id: string) => axiosInstance.get(`/v1/home/get/${id}`)
+export const fetchHomes = (data: any) => axiosInstance.get('/v1/home/getall', {data});
+export const deleteHome = (id: string) => axiosInstance.delete(`/v1/home/delete/${id}`)
 
 //---------------------------------------------------------------------upload image
 export const fileUpload = (data: any) => axiosInstance.post('/v1/fileUpload', data, {

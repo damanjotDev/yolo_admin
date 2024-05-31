@@ -11,8 +11,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import { ServiceActions, PropertyActions, UserActions, EventActions, CategoryActions, TagActions, RoomActions, AboutActions, ExperienceActions } from "../../reducers"
-import { removeAbout, removeCategory, removeEvent, removeExperience, removeProperty, removeRoom, removeService, removeTag, removeUser } from "../../services"
+import { ServiceActions, PropertyActions, UserActions, EventActions, CategoryActions, TagActions, RoomActions, AboutActions, ExperienceActions, HomeActions } from "../../reducers"
+import { removeAbout, removeCategory, removeEvent, removeExperience, removeHome, removeProperty, removeRoom, removeService, removeTag, removeUser } from "../../services"
 import { useNavigate } from "react-router-dom"
 import { RoutesName } from "../../utils/constant"
 import { useAppDispatch } from "../../stateStore"
@@ -34,6 +34,11 @@ export function DataTableRowActions<TData>({
 
   const handleEdit = ()=>{
     switch (label) {
+      case 'homes':
+        dispatch(HomeActions.setHomeDetails(row?.original))
+        navigate(RoutesName.HomeEdit)
+        break;
+
       case 'services':
         dispatch(ServiceActions.setServiceDetails(row?.original))
         navigate(RoutesName.ServiceEdit)
@@ -86,6 +91,10 @@ export function DataTableRowActions<TData>({
 
   const handleDelete = ()=>{
     switch (label){
+      case 'homes':
+        dispatch(removeHome({...row?.original}))
+        break;
+
       case 'services':
         dispatch(removeService({...row?.original}))
         break;
@@ -138,6 +147,17 @@ export function DataTableRowActions<TData>({
           <span className="sr-only">Open menu</span>
         </Button>
       </DropdownMenuTrigger>
+
+      {label==="homes"?
+      <DropdownMenuContent  align="end" className="w-[160px]">
+      <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
+      {/* <DropdownMenuItem>Make a copy</DropdownMenuItem> */}
+      <DropdownMenuItem onClick={handleDelete}>
+        Delete
+        <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>:null}
+
      {label==="services"?
       <DropdownMenuContent  align="end" className="w-[160px]">
       <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>

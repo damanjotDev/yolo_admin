@@ -34,6 +34,9 @@ import { ExperiencePage } from './main/experience';
 import { ExperienceAddPage } from './main/experience/add-experience';
 import { ExperienceEditPage } from './main/experience/edit-experience';
 import { PrivateRoute } from '../components/common/private-route';
+import { HomePage } from './main/home';
+import { HomeAddPage } from './main/home/home';
+import { HomeEditPage } from './main/home/edit-home';
 
 
 const RouteHanding = () => {
@@ -45,6 +48,11 @@ const RouteHanding = () => {
 
                               {/* // Route for landing Home Page */}
                               <Route path={RoutesName.Dashboard} element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+
+                              {/* Home Section */}
+                              <Route path={RoutesName.Homes} element={<PrivateRoute><HomePage/></PrivateRoute>} />
+                              <Route path={RoutesName.HomeAdd} element={<PrivateRoute><HomeAddPage/></PrivateRoute>} />
+                              <Route path={RoutesName.HomeEdit} element={<PrivateRoute><HomeEditPage/></PrivateRoute>} />
 
                               {/* Service Section */}
                               <Route path={RoutesName.Services} element={<PrivateRoute><ServicePage/></PrivateRoute>} />

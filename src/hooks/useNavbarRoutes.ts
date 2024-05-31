@@ -19,62 +19,70 @@ const useNavbarRoutes = () =>{
         },
         {
             id: '2',
+            navigate: () => navigate(RoutesName.Homes),
+            icon: RxDashboard,
+            active: RoutesName.Homes===location.pathname,
+            label: 'Homes'
+            
+        },
+        {
+            id: '3',
             navigate: () => navigate(RoutesName.Services),
             icon: MdOutlineAnalytics,
             active: RoutesName.Services===location.pathname,
             label: 'Services'
         },
         {
-            id: '3',
+            id: '4',
             navigate: () => navigate(RoutesName.Properties),
             icon: RxDashboard,
             active: RoutesName.Properties===location.pathname,
             label: 'Properties'
         },
         {
-            id: '4',
+            id: '5',
             navigate: () => navigate(RoutesName.Rooms),
             icon: MdOutlineAnalytics,
             active: RoutesName.Rooms===location.pathname,
             label: 'Rooms'
         },
         {
-            id: '5',
+            id: '6',
             navigate: () => navigate(RoutesName.Users),
             icon: MdOutlineAnalytics,
             active: RoutesName.Users===location.pathname,
             label: 'Users'
         },
         {
-            id: '6',
+            id: '7',
             navigate: () => navigate(RoutesName.Categories),
             icon: MdOutlineAnalytics,
             active: RoutesName.Categories===location.pathname,
             label: 'Categories'
         },
         {
-            id: '7',
+            id: '8',
             navigate: () => navigate(RoutesName.Events),
             icon: MdOutlineAnalytics,
             active: RoutesName.Events===location.pathname,
             label: 'Event'
         },
         {
-            id: '8',
+            id: '9',
             navigate: () => navigate(RoutesName.Tags),
             icon: MdOutlineAnalytics,
             active: RoutesName.Tags===location.pathname,
             label: 'Tags'
         },
         {
-            id: '9',
+            id: '10',
             navigate: () => navigate(RoutesName.Abouts),
             icon: MdOutlineAnalytics,
             active: RoutesName.Abouts===location.pathname,
             label: 'Abouts'
         },
         {
-            id: '10',
+            id: '11',
             navigate: () => navigate(RoutesName.Experiences),
             icon: MdOutlineAnalytics,
             active: RoutesName.Experiences===location.pathname,

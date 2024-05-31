@@ -3,6 +3,10 @@ export const RoutesName = {
         
         Dashboard: '/dashboard',
 
+        Homes: '/homes',
+        HomeAdd: '/homes/add',
+        HomeEdit: '/homes/edit',
+
         Services: '/services',
         ServiceAdd: '/services/add',
         ServiceEdit: '/services/edit',
