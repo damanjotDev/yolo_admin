@@ -89,10 +89,21 @@ export const FileInput = ({
       return formats.some((format) => file.type.endsWith(`/${format}`));
     });
 
+    const maxSize = 10 * 1024 * 1024; // 10 MB 
+    const allFilesValidSize = files.every(file => file.size <= maxSize);
+
     if (ownerLicense.length >= count) {
       toast({
         variant: "destructive",
         title: `Only ${count} files can be uploaded.`,
+        // action: <ToastAction altText="Try again">Try again</ToastAction>,
+      })
+      return;
+    }
+    else if(!allFilesValidSize){
+      toast({
+        variant: "destructive",
+        title: `File shopuld be less then 10 MB`,
         // action: <ToastAction altText="Try again">Try again</ToastAction>,
       })
       return;
